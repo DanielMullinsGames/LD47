@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CustomCoroutine : MonoBehaviour
 {
-
+    public static CustomCoroutine Instance { get { TryCreateInstance();  return instance; } }
     private static CustomCoroutine instance;
 
     #region Common
@@ -16,10 +16,44 @@ public class CustomCoroutine : MonoBehaviour
         }
     }
 
+    public static void FlickerSequence(System.Action flickerOn, System.Action flickerOff, bool startOn, bool endOn, float interval, int iterations)
+    {
+        TryCreateInstance();
+        instance.StartFlickerSequence(flickerOn, flickerOff, startOn, endOn, interval, iterations);
+    }
+
+    public void StartFlickerSequence(System.Action flickerOn, System.Action flickerOff, bool startOn, bool endOn, float interval, int iterations)
+    {
+        StartCoroutine(DoFlickerSequence(flickerOn, flickerOff, startOn, endOn, interval, iterations));
+    }
+
+    IEnumerator DoFlickerSequence(System.Action flickerOn, System.Action flickerOff, bool startOn, bool endOn, float interval, int iterations)
+    {
+        var firstAction = startOn ? flickerOn : flickerOff;
+        var secondAction = startOn ? flickerOff : flickerOn;
+
+        for (int i = 0; i < iterations; i++)
+        {
+            firstAction?.Invoke();
+            yield return new WaitForSeconds(interval);
+            secondAction?.Invoke();
+            yield return new WaitForSeconds(interval);
+        }
+
+        if (endOn)
+        {
+            flickerOn?.Invoke();
+        }
+        else
+        {
+            flickerOff?.Invoke();
+        }
+    }
+
     #endregion
 
-	#region WaitOnConditionThenExecute
-	public static void WaitOnConditionThenExecute(System.Func<bool> condition, System.Action action)
+    #region WaitOnConditionThenExecute
+    public static void WaitOnConditionThenExecute(System.Func<bool> condition, System.Action action)
 	{
 		TryCreateInstance();
 		instance.StartWaitOnConditionThenExecute(condition, action);
