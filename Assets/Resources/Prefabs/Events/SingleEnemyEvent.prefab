@@ -106,11 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7945ec724c421c84c833fd902ce366eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 3
+  length: 1
   enemy: {fileID: 2178831712064688224}
   startMarker: {fileID: 4003560173521381773}
   endMarker: {fileID: 4003560173644808940}
   telegraphTime: 0.75
+  startWeapon: 0
 --- !u!1001 &6714566737779352852
 PrefabInstance:
   m_ObjectHideFlags: 0

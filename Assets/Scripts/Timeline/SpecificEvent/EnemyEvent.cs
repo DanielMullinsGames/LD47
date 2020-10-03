@@ -62,8 +62,7 @@ public class EnemyEvent : TimelineEvent
                 }
             }
 
-            yield return new WaitForSeconds(1f);
-            // if lived, kill player + reset
+            yield return new WaitForSeconds(0.25f);
         }
     }
 }

@@ -19,6 +19,7 @@ public class SimpleEnemy : MonoBehaviour
 
 	public void ResetToStart()
     {
+        Dead = false;
         anim.Play("running", 0, 0f);
         hasTarget = false;
     }

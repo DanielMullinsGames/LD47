@@ -10,6 +10,7 @@ public class PlayerController : Singleton<PlayerController>
         Ducking,
         Dead,
         PreparingAttack,
+        Moving,
     }
 
     public enum Weapon
@@ -43,6 +44,16 @@ public class PlayerController : Singleton<PlayerController>
         Anim.ResetTrigger("prepare_attack");
         Anim.ResetTrigger("end_attack");
         StopAllCoroutines();
+    }
+
+    public void StartMove()
+    {
+        SetState(State.Moving);
+    }
+
+    public void EndMove()
+    {
+        SetState(State.Standing);
     }
 
     public void Die()
@@ -107,6 +118,15 @@ public class PlayerController : Singleton<PlayerController>
         {
             Anim.SetTrigger("prepare_attack");
             releasedAttack = false;
+        }
+
+        if (newState == State.Moving)
+        {
+            Anim.SetBool("moving", true);
+        }
+        else
+        {
+            Anim.SetBool("moving", false);
         }
         currentState = newState;
     }

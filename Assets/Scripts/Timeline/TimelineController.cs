@@ -61,16 +61,20 @@ public class TimelineController : Singleton<TimelineController>
     {
         CameraEffects.Instance.ShowRewind();
         PlayerController.Instance.Reset();
+        SkipToStartOfEvent(currentPositionIndex);
 
         bool survived = true;
         currentPositionIndex = RangeStartIndex;
 
         while (survived && !EndOfTimeline)
         {
-            var currentEvent = events[currentPositionIndex];
-            yield return currentEvent.PlayEvent();
+            float moveTime = CameraController.Instance.MoveToPoint(CurrentEvent.transform.position.x, immediate: currentPositionIndex == RangeStartIndex);
+            yield return new WaitForSeconds(moveTime);
 
-            survived = currentEvent.Survived;
+            yield return new WaitForSeconds(0.1f);
+            yield return CurrentEvent.PlayEvent();
+
+            survived = CurrentEvent.Survived;
             if (survived)
             {
                 currentPositionIndex++;
@@ -118,6 +122,7 @@ public class TimelineController : Singleton<TimelineController>
 
     private void SkipToStartOfEvent(int index)
     {
+        CameraController.Instance.MoveToPoint(events[index].transform.position.x, immediate: true);
         for (int i = 0; i < events.Count; i++)
         {
             if (i >= index)
