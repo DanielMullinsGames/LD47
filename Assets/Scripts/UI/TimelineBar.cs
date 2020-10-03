@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pixelplacement;
 
 public class TimelineBar : Singleton<TimelineBar>
 {
@@ -19,6 +20,12 @@ public class TimelineBar : Singleton<TimelineBar>
     [SerializeField]
     private Transform rightBarEdge;
 
+    [SerializeField]
+    private SpriteRenderer activeAreaBar;
+
+    [SerializeField]
+    private AnimationCurve tweenCurve;
+
     private void Start()
     {
         ShowRange(TimelineController.Instance.RangeStartIndex, TimelineController.Instance.RangeEndIndex);
@@ -26,19 +33,29 @@ public class TimelineBar : Singleton<TimelineBar>
 
     public IEnumerator ShowExpandRange(int rangeStartIndex, int rangeEndIndex)
     {
-        ShowRange(rangeStartIndex, rangeEndIndex);
-        yield break;
+        const float duration = 2f;
+
+        ShowRange(rangeStartIndex, rangeEndIndex, immediate: false, duration: duration);
+        yield return new WaitForSeconds(duration);
     }
 
-    private void ShowRange(int rangeStartIndex, int rangeEndIndex, bool immediate = true)
+    private void ShowRange(int rangeStartIndex, int rangeEndIndex, bool immediate = true, float duration = 1f)
     {
         Vector2 leftRangePos = new Vector2(GetTimelineX(rangeStartIndex), leftRangeMarker.position.y);
         Vector2 rightRangePos = new Vector2(GetTimelineX(rangeEndIndex), rightRangeMarker.position.y);
+
+        float barWidth = rightRangePos.x - leftRangePos.x;
 
         if (immediate)
         {
             leftRangeMarker.position = leftRangePos;
             rightRangeMarker.position = rightRangePos;
+
+            SetBarWidth(barWidth);
+        }
+        else
+        {
+            StartCoroutine(TweenUI(leftRangePos, rightRangePos, barWidth, duration));
         }
     }
 
@@ -58,5 +75,37 @@ public class TimelineBar : Singleton<TimelineBar>
             float markerX = Mathf.Lerp(leftRangeMarker.position.x, rightRangeMarker.position.x, timelineProgress + eventProgress);
             playerMarker.position = new Vector2(markerX, playerMarker.position.y);
         }
+    }
+
+    private IEnumerator TweenUI(Vector2 leftMarkerPos, Vector2 rightMarkerPos, float barWidth, float duration)
+    {
+        float timer = 0f;
+
+        Vector2 startLeftPos = leftRangeMarker.position;
+        Vector2 startRightPos = rightRangeMarker.position;
+        float startBarWidth = activeAreaBar.size.x;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float progress = tweenCurve.Evaluate(timer / duration);
+
+            leftRangeMarker.position = Vector2.Lerp(startLeftPos, leftMarkerPos, progress);
+            rightRangeMarker.position = Vector2.Lerp(startRightPos, rightMarkerPos, progress);
+            SetBarWidth(Mathf.Lerp(startBarWidth, barWidth, progress));
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        leftRangeMarker.position = leftMarkerPos;
+        rightRangeMarker.position = rightMarkerPos;
+        SetBarWidth(barWidth);
+    }
+
+    private void SetBarWidth(float barWidth)
+    {
+        var size = activeAreaBar.size;
+        size.x = barWidth;
+        activeAreaBar.size = size;
     }
 }
