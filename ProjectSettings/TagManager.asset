@@ -50,3 +50,6 @@ TagManager:
   - name: FG
     uniqueID: 95285189
     locked: 0
+  - name: UI
+    uniqueID: 1181544877
+    locked: 0
