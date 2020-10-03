@@ -1105,3 +1105,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 7683543502855509342}
   speed: -18
+  sortingGroup: {fileID: 7683543502855509337}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SimpleEnemy : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class SimpleEnemy : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    [SerializeField]
+    private SortingGroup sortingGroup;
+
     private bool hasTarget;
     private float targetX;
 
@@ -19,6 +23,7 @@ public class SimpleEnemy : MonoBehaviour
 
 	public void ResetToStart()
     {
+        sortingGroup.sortingOrder = 2;
         Dead = false;
         anim.Play("running", 0, 0f);
         hasTarget = false;
@@ -33,6 +38,7 @@ public class SimpleEnemy : MonoBehaviour
     {
         Dead = true;
         anim.Play("die", 0, 0f);
+        sortingGroup.sortingOrder = 10;
     }
 
     public void MoveToTarget(float xPos)
