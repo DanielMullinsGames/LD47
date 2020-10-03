@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimelineController : MonoBehaviour
+public class TimelineController : Singleton<TimelineController>
 {
+    public TimelineEvent CurrentEvent => events[markerPosition];
+    public int NumEventsInActiveRange => (((events.Count / 2) - markerPosition) * 2) + 1;
+    public int ActiveRangeEventProgress => markerPosition - rangeStartPosition;
+
     private bool ReachedEnd => markerPosition == events.Count;
 
     [SerializeField]
     private List<TimelineEvent> events = new List<TimelineEvent>();
 
     private int markerPosition;
+    private int rangeStartPosition;
 
     private void Start()
     {
+        markerPosition = rangeStartPosition = Mathf.CeilToInt(events.Count / 2f) - 1;
         StartCoroutine(MainLoop());
     }
 

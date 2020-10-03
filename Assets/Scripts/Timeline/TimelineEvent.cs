@@ -6,8 +6,12 @@ public abstract class TimelineEvent : MonoBehaviour
 {
     public bool Survived { get; protected set; }
 
+    public float EventProgress => Mathf.Clamp((Time.time - timeStarted) / (timeUntilDeath + timeStarted), 0f, 1f);
+
     [SerializeField]
     private float timeUntilDeath;
+
+    private float timeStarted;
 
     public void SkipToEvent()
     {
@@ -16,6 +20,7 @@ public abstract class TimelineEvent : MonoBehaviour
 
     public IEnumerator PlayEvent()
     {
+        timeStarted = Time.time;
         Survived = false;
         yield return EventSequence();
     }
