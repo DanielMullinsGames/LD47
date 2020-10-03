@@ -6,27 +6,37 @@ public abstract class TimelineEvent : MonoBehaviour
 {
     public bool Survived { get; protected set; }
 
-    public float EventProgress => Mathf.Clamp((Time.time - timeStarted) / length, 0f, 1f);
+    public float EventProgress => playing ? Mathf.Clamp((Time.time - timeStarted) / length, 0f, 1f) : 0f;
 
     public float Length => length;
     [SerializeField]
     private float length = default;
 
     private float timeStarted;
+    private bool playing = true;
 
-    public void SkipToEvent()
+    public void ResetEventToStart()
     {
-        ResetEvent();
+        ResetToStart();
+    }
+
+    public void ResetEventToEnd()
+    {
+        ResetToEnd();
     }
 
     public IEnumerator PlayEvent()
     {
         timeStarted = Time.time;
+        playing = true;
         Survived = true;
+        ResetToStart();
         yield return EventSequence();
+        playing = false;
     }
 
     protected abstract IEnumerator EventSequence();
 
-    protected virtual void ResetEvent() { }
+    protected virtual void ResetToStart() { }
+    protected virtual void ResetToEnd() { }
 }

@@ -9,7 +9,7 @@ public class TimelineController : Singleton<TimelineController>
         get
         {
             float time = 0f;
-            for (int i = 0; i < markerIndex; i++)
+            for (int i = 0; i < currentPositionIndex; i++)
             {
                 time += events[i].Length;
             }
@@ -29,10 +29,10 @@ public class TimelineController : Singleton<TimelineController>
     }
 
     public bool EndOfTimeline => CurrentEvent == null;
-    public TimelineEvent CurrentEvent => markerIndex < events.Count ? events[markerIndex] : null;
+    public TimelineEvent CurrentEvent => currentPositionIndex < events.Count ? events[currentPositionIndex] : null;
     public int NumEventsInTimeline => events.Count;
     public int NumEventsInActiveRange => (((events.Count / 2) - RangeStartIndex) * 2) + 1;
-    public int ActiveRangeEventProgress => markerIndex - RangeStartIndex;
+    public int ActiveRangeEventProgress => currentPositionIndex - RangeStartIndex;
     public int RangeStartIndex { get; private set; }
     public int RangeEndIndex => RangeCenterIndex + (RangeCenterIndex - RangeStartIndex + 1);
     private int RangeCenterIndex => Mathf.CeilToInt(events.Count / 2f) - 1;
@@ -40,11 +40,12 @@ public class TimelineController : Singleton<TimelineController>
     [SerializeField]
     private List<TimelineEvent> events = new List<TimelineEvent>();
 
-    private int markerIndex;
+    private int currentPositionIndex;
 
     private void Start()
     {
-        markerIndex = RangeStartIndex = RangeCenterIndex;
+        currentPositionIndex = RangeStartIndex = RangeCenterIndex;
+        SkipToStartOfEvent(currentPositionIndex);
         StartCoroutine(MainLoop());
     }
 
@@ -62,17 +63,17 @@ public class TimelineController : Singleton<TimelineController>
         PlayerController.Instance.Reset();
 
         bool survived = true;
-        markerIndex = RangeStartIndex;
+        currentPositionIndex = RangeStartIndex;
 
         while (survived && !EndOfTimeline)
         {
-            var currentEvent = events[markerIndex];
+            var currentEvent = events[currentPositionIndex];
             yield return currentEvent.PlayEvent();
 
             survived = currentEvent.Survived;
             if (survived)
             {
-                markerIndex++;
+                currentPositionIndex++;
 
                 if (EndOfTimeline)
                 {
@@ -80,7 +81,7 @@ public class TimelineController : Singleton<TimelineController>
                     AnimationPauser.Instance.SetPaused(true);
                     break;
                 }
-                else if (markerIndex >= RangeEndIndex)
+                else if (currentPositionIndex >= RangeEndIndex)
                 {
                     yield return ExpandActiveRange();
                     break;
@@ -92,12 +93,41 @@ public class TimelineController : Singleton<TimelineController>
     private IEnumerator ExpandActiveRange()
     {
         AnimationPauser.Instance.SetPaused(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         RangeStartIndex = Mathf.Max(0, RangeStartIndex - 1);
         yield return TimelineBar.Instance.ShowExpandRange(RangeStartIndex, RangeEndIndex);
+        yield return new WaitForSeconds(0.25f);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return StepBackToStartMarker();
+        yield return new WaitForSeconds(0.25f);
+
         AnimationPauser.Instance.SetPaused(false);
+    }
+
+    private IEnumerator StepBackToStartMarker()
+    {
+        while (currentPositionIndex > RangeStartIndex)
+        {
+            currentPositionIndex--;
+            CameraEffects.Instance.ShowRewind();
+            SkipToStartOfEvent(currentPositionIndex);
+            yield return new WaitForSeconds(0.4f);
+        }
+    }
+
+    private void SkipToStartOfEvent(int index)
+    {
+        for (int i = 0; i < events.Count; i++)
+        {
+            if (i >= index)
+            {
+                events[i].ResetEventToStart();
+            }
+            else
+            {
+                events[i].ResetEventToEnd();
+            }
+        }
     }
 }
