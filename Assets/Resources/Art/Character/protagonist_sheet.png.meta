@@ -1,7 +1,40 @@
 fileFormatVersion: 2
 guid: 7d794432109ed2d4ea2c35919f2135c9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2968194417486435260
+    second: protagonist_sheet_0
+  - first:
+      213: -3411188550062246757
+    second: protagonist_sheet_1
+  - first:
+      213: 7364898622974456280
+    second: protagonist_sheet_2
+  - first:
+      213: -6213556619229926260
+    second: protagonist_sheet_3
+  - first:
+      213: 4255634124410705907
+    second: protagonist_sheet_4
+  - first:
+      213: 9175933626557842875
+    second: protagonist_sheet_5
+  - first:
+      213: -4701168020821797459
+    second: protagonist_sheet_6
+  - first:
+      213: -6522632362299861296
+    second: protagonist_sheet_7
+  - first:
+      213: 7823275666766284332
+    second: protagonist_sheet_8
+  - first:
+      213: -1822343916380967780
+    second: protagonist_sheet_9
+  - first:
+      213: 3859142513241856756
+    second: protagonist_sheet_10
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +73,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -84,7 +117,217 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: protagonist_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 50
+        width: 136
+        height: 172
+      alignment: 9
+      pivot: {x: 0.521729, y: 0.0685641}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09b9cd88c1e973c499885356bec473ee
+      internalID: 2968194417486435260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 111
+        width: 97
+        height: 111
+      alignment: 9
+      pivot: {x: 0.75726336, y: 0.6834024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f35ce764df7a2e45a097d350645d5c4
+      internalID: -3411188550062246757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 150
+        width: 59
+        height: 68
+      alignment: 9
+      pivot: {x: 0.8339145, y: 0.9007795}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 377d83c4f28e043429d819da83d145b9
+      internalID: 7364898622974456280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 33
+        width: 145
+        height: 185
+      alignment: 9
+      pivot: {x: 0.4750907, y: 0.10953035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f85e9efc755e50448a1922067ce2ee0
+      internalID: -6213556619229926260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 154
+        width: 39
+        height: 66
+      alignment: 9
+      pivot: {x: 0.21374668, y: 0.8780994}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1832ac1b406dbc84cb223b2b089acc78
+      internalID: 4255634124410705907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 70
+        width: 28
+        height: 36
+      alignment: 9
+      pivot: {x: 0.42963955, y: 0.77362466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcc398a4e3810dc44af52390e389d14e
+      internalID: 9175933626557842875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 62
+        width: 24
+        height: 83
+      alignment: 9
+      pivot: {x: 0.4042314, y: 0.8323054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a7a4ce1920a6814fa6bd59fccf7eae2
+      internalID: -4701168020821797459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 76
+        width: 35
+        height: 66
+      alignment: 9
+      pivot: {x: 0.81896883, y: 0.8979994}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6a0fb74240f3914682dd873c455a37c
+      internalID: -6522632362299861296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 53
+        width: 39
+        height: 17
+      alignment: 9
+      pivot: {x: 0.23058456, y: 0.63520205}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc540d00a3cc204489c23cd28207dae7
+      internalID: 7823275666766284332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protagonist_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 512
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a496792074d6449a0eb7129a4e48e9
+      internalID: 3859142513241856756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
