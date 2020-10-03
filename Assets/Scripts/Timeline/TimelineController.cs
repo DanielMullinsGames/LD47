@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class TimelineController : Singleton<TimelineController>
 {
-    public TimelineEvent CurrentEvent => events[markerPosition];
-    public int NumEventsInActiveRange => (((events.Count / 2) - markerPosition) * 2) + 1;
-    public int ActiveRangeEventProgress => markerPosition - rangeStartPosition;
+    public TimelineEvent CurrentEvent => events[markerIndex];
+    public int NumEventsInActiveRange => (((events.Count / 2) - markerIndex) * 2) + 1;
+    public int ActiveRangeEventProgress => markerIndex - rangeStartIndex;
 
     public float NormalizedTime
     {
         get
         {
             float time = 0f;
-            for (int i = 0; i < markerPosition; i++)
+            for (int i = 0; i < markerIndex; i++)
             {
                 time += events[i].Length;
             }
@@ -32,23 +32,25 @@ public class TimelineController : Singleton<TimelineController>
         } 
     }
 
-    private bool ReachedEnd => markerPosition == events.Count;
+    private bool EndOfTimeline => markerIndex == events.Count;
+    private int RangeCenterIndex => Mathf.CeilToInt(events.Count / 2f) - 1;
+    private int RangeEndIndex => RangeCenterIndex + (RangeCenterIndex - markerIndex);
 
     [SerializeField]
     private List<TimelineEvent> events = new List<TimelineEvent>();
 
-    private int markerPosition;
-    private int rangeStartPosition;
+    private int markerIndex;
+    private int rangeStartIndex;
 
     private void Start()
     {
-        markerPosition = rangeStartPosition = Mathf.CeilToInt(events.Count / 2f) - 1;
+        markerIndex = rangeStartIndex = RangeCenterIndex;
         StartCoroutine(MainLoop());
     }
 
     private IEnumerator MainLoop()
     {
-        while (!ReachedEnd)
+        while (!EndOfTimeline)
         {
             yield return PlayFromMarker();
         }
@@ -60,16 +62,28 @@ public class TimelineController : Singleton<TimelineController>
         bool survived = true;
         PlayerController.Instance.Reset();
 
-        while (survived && !ReachedEnd)
+        while (survived && !EndOfTimeline)
         {
-            var currentEvent = events[markerPosition];
+            var currentEvent = events[markerIndex];
             yield return currentEvent.PlayEvent();
 
             survived = currentEvent.Survived;
             if (survived)
             {
-                markerPosition++;
+                markerIndex++;
+
+                if (markerIndex > RangeEndIndex)
+                {
+                    yield return ExpandActiveRange();
+                    break;
+                }
             }
         }
+    }
+
+    private IEnumerator ExpandActiveRange()
+    {
+        rangeStartIndex = Mathf.Max(0, rangeStartIndex - 1);
+        yield return TimelineBar.Instance.ShowExpandRange(rangeStartIndex, RangeEndIndex);
     }
 }
