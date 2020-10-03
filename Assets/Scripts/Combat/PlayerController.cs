@@ -9,6 +9,7 @@ public class PlayerController : Singleton<PlayerController>
         Standing,
         Ducking,
         Dead,
+        PreparingAttack,
     }
 
     public bool Ducking => currentState == State.Ducking;
@@ -39,7 +40,17 @@ public class PlayerController : Singleton<PlayerController>
         {
             Anim.SetBool("ducking", false);
         }
+
+        if (newState == State.PreparingAttack)
+        {
+            Anim.SetTrigger("prepare_attack");
+        }
         currentState = newState;
+    }
+
+    private void Attack()
+    {
+
     }
 
     private void Update()
@@ -51,11 +62,21 @@ public class PlayerController : Singleton<PlayerController>
                 {
                     SetState(State.Ducking);
                 }
+                if (Input.GetButton("Attack"))
+                {
+                    SetState(State.PreparingAttack);
+                }
                 break;
             case State.Ducking:
                 if (Input.GetButtonUp("Duck"))
                 {
                     SetState(State.Standing);
+                }
+                break;
+            case State.PreparingAttack:
+                if (Input.GetButtonUp("Attack"))
+                {
+                    Anim.Play("attack", 0, 0f);
                 }
                 break;
         }
