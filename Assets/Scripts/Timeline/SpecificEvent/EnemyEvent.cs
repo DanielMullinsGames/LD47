@@ -13,6 +13,9 @@ public class EnemyEvent : TimelineEvent
     [SerializeField]
     private Transform endMarker;
 
+    [SerializeField]
+    private float telegraphTime = 0.75f;
+
     protected override void ResetToStart()
     {
         enemy.transform.position = new Vector2(startMarker.position.x, enemy.transform.position.y);
@@ -32,8 +35,33 @@ public class EnemyEvent : TimelineEvent
 
         if (!enemy.Dead)
         {
-            // raise weapon
-            // wait to see if dead
+            enemy.RaiseWeapon();
+            float strikeTimer = 0f;
+            while (strikeTimer < telegraphTime && !enemy.Dead)
+            {
+                strikeTimer += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+            
+            if (enemy.Dead)
+            {
+
+            }
+            else
+            {
+                enemy.Strike();
+                yield return new WaitForSeconds(0.1f);
+                if (!enemy.Dead)
+                {
+                    Survived = false;
+                    PlayerController.Instance.Anim.SetTrigger("knife");
+                    PlayerController.Instance.Die();
+                    yield return new WaitForSeconds(0.3f);
+                    yield break;
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
             // if lived, kill player + reset
         }
     }

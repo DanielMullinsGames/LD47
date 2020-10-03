@@ -40,6 +40,16 @@ public class SimpleEnemy : MonoBehaviour
         ReachedTarget = false;
     }
 
+    public void RaiseWeapon()
+    {
+        anim.SetTrigger("raise_weapon");
+    }
+
+    public void Strike()
+    {
+        anim.Play("attack", 0, 0f);
+    }
+
     private void Update()
     {
         if (!Dead && hasTarget)

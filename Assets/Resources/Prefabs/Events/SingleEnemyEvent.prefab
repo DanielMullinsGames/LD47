@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4003560173644808943}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.19, y: 0, z: 0}
+  m_LocalPosition: {x: 3.34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4003560174814668443}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4003560174814668443}
   - component: {fileID: 4003560174814668440}
   m_Layer: 0
-  m_Name: 09_SingleEnemy
+  m_Name: SingleEnemyEvent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,10 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7945ec724c421c84c833fd902ce366eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 2
+  length: 3
   enemy: {fileID: 2178831712064688224}
   startMarker: {fileID: 4003560173521381773}
   endMarker: {fileID: 4003560173644808940}
+  telegraphTime: 0.75
 --- !u!1001 &6714566737779352852
 PrefabInstance:
   m_ObjectHideFlags: 0
