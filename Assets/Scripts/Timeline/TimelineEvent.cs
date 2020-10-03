@@ -13,24 +13,27 @@ public abstract class TimelineEvent : MonoBehaviour
     private float length = default;
 
     private float timeStarted;
-    private bool playing = true;
+    private bool playing;
 
     public void ResetEventToStart()
     {
+        Survived = true;
+        playing = false;
         ResetToStart();
     }
 
     public void ResetEventToEnd()
     {
+        Survived = true;
+        playing = false;
         ResetToEnd();
     }
 
     public IEnumerator PlayEvent()
     {
+        ResetEventToStart();
         timeStarted = Time.time;
         playing = true;
-        Survived = true;
-        ResetToStart();
         yield return EventSequence();
         playing = false;
     }

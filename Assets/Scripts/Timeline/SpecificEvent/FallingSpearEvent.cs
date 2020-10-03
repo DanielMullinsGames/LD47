@@ -30,13 +30,12 @@ public class FallingSpearEvent : TimelineEvent
     protected override IEnumerator EventSequence()
     {
         fallingSpear.gameObject.SetActive(true);
-        
+
         Tween.Position(fallingSpear, landMarker.position, 0.75f, 0f, Tween.EaseIn);
         yield return new WaitForSeconds(0.5f);
         
         if (!PlayerController.Instance.Ducking)
         {
-            // impale animation
             Survived = false;
             PlayerController.Instance.Anim.SetTrigger("impale");
             PlayerController.Instance.Die();

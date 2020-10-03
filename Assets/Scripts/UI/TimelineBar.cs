@@ -26,6 +26,8 @@ public class TimelineBar : Singleton<TimelineBar>
     [SerializeField]
     private AnimationCurve tweenCurve;
 
+    private bool tweening = false;
+
     private void Start()
     {
         ShowRange(TimelineController.Instance.RangeStartIndex, TimelineController.Instance.RangeEndIndex);
@@ -67,7 +69,7 @@ public class TimelineBar : Singleton<TimelineBar>
 
     private void Update()
     {
-        if (!TimelineController.Instance.EndOfTimeline && TimelineController.Instance.CurrentEvent.Survived)
+        if (!TimelineController.Instance.EndOfTimeline && !PlayerController.Instance.Dead && !tweening)
         {
             int numEventsInRange = TimelineController.Instance.NumEventsInActiveRange;
             float timelineProgress = TimelineController.Instance.ActiveRangeEventProgress / (float)numEventsInRange;
@@ -79,6 +81,7 @@ public class TimelineBar : Singleton<TimelineBar>
 
     private IEnumerator TweenUI(Vector2 leftMarkerPos, Vector2 rightMarkerPos, float barWidth, float duration)
     {
+        tweening = true;
         float timer = 0f;
 
         Vector2 startLeftPos = leftRangeMarker.position;
@@ -100,6 +103,7 @@ public class TimelineBar : Singleton<TimelineBar>
         leftRangeMarker.position = leftMarkerPos;
         rightRangeMarker.position = rightMarkerPos;
         SetBarWidth(barWidth);
+        tweening = false;
     }
 
     private void SetBarWidth(float barWidth)

@@ -12,6 +12,7 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     public bool Ducking => currentState == State.Ducking;
+    public bool Dead => currentState == State.Dead;
     public Animator Anim => GetComponentInChildren<Animator>();
 
     private State currentState = State.Standing;
