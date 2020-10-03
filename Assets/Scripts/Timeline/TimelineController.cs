@@ -61,7 +61,7 @@ public class TimelineController : Singleton<TimelineController>
     {
         CameraEffects.Instance.ShowRewind();
         PlayerController.Instance.Reset();
-        SkipToStartOfEvent(currentPositionIndex);
+        SkipToStartOfEvent(RangeStartIndex);
 
         bool survived = true;
         currentPositionIndex = RangeStartIndex;

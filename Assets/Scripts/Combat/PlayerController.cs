@@ -140,7 +140,7 @@ public class PlayerController : Singleton<PlayerController>
                 {
                     SetState(State.Ducking);
                 }
-                if (CurrentWeapon != null && Input.GetButtonDown("Attack"))
+                if (CurrentWeaponId != Weapon.None && Input.GetButtonDown("Attack"))
                 {
                     SetState(State.PreparingAttack);
                 }

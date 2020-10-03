@@ -18,6 +18,7 @@ public class FallingSpearEvent : TimelineEvent
     {
         fallingSpear.gameObject.SetActive(false);
         fallingSpear.transform.position = startMarker.position;
+        fallingSpear.GetComponent<SpriteRenderer>().sortingOrder = -1;
     }
 
     protected override void ResetToEnd()
