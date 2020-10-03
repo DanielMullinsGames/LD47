@@ -21,7 +21,7 @@ public class TimelineBar : Singleton<TimelineBar>
 
     private void Start()
     {
-        ShowRange(0, 1);
+        ShowRange(TimelineController.Instance.RangeStartIndex, TimelineController.Instance.RangeEndIndex);
     }
 
     public IEnumerator ShowExpandRange(int rangeStartIndex, int rangeEndIndex)
@@ -44,8 +44,8 @@ public class TimelineBar : Singleton<TimelineBar>
 
     private float GetTimelineX(int timelineIndex)
     {
-        float timelineProgress = timelineIndex / (float)TimelineController.Instance.NumEventsInActiveRange;
-        return Mathf.Lerp(leftBarEdge.position.x, rightBarEdge.position.x, timelineProgress + timelineProgress);
+        float timelineProgress = timelineIndex / (float)TimelineController.Instance.NumEventsInTimeline;
+        return Mathf.Lerp(leftBarEdge.position.x, rightBarEdge.position.x, timelineProgress);
     }
 
     private void Update()
