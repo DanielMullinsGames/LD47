@@ -84,7 +84,13 @@ public class TimelineController : Singleton<TimelineController>
 
     private IEnumerator ExpandActiveRange()
     {
+        AnimationPauser.Instance.SetPaused(true);
+        yield return new WaitForSeconds(1f);
+
         RangeStartIndex = Mathf.Max(0, RangeStartIndex - 1);
         yield return TimelineBar.Instance.ShowExpandRange(RangeStartIndex, RangeEndIndex);
+
+        yield return new WaitForSeconds(0.5f);
+        AnimationPauser.Instance.SetPaused(false);
     }
 }

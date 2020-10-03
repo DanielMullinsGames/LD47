@@ -527,6 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiCamAnim: {fileID: 505874778}
+  grayScaleEffect: {fileID: 328876473}
 --- !u!114 &328876473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,6 +1467,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531d921687a417b44926a61e158ba43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &871355121 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9111276781780519486, guid: dd86bb2a9190f344885f73a96d8f85f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 713286333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &962757480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,6 +2120,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1264656654 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2958688638686289693, guid: 4dc37756d8d8bc7418aad7323d6b01d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2958688638995887354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1272196383 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9111276781780519486, guid: dd86bb2a9190f344885f73a96d8f85f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 9111276782981036711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1305646490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,6 +2253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1463858604}
   - component: {fileID: 1463858605}
+  - component: {fileID: 1463858606}
   m_Layer: 0
   m_Name: EventsTimeline
   m_TagString: Untagged
@@ -2278,6 +2298,28 @@ MonoBehaviour:
   - {fileID: 853807252}
   - {fileID: 1540314489}
   - {fileID: 276575218}
+--- !u!114 &1463858606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463858603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab5df84664f8204ea5e81fe4f771c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorsToPause:
+  - {fileID: 1272196383}
+  - {fileID: 871355121}
+  - {fileID: 1264656654}
+  scriptsToPause:
+  - {fileID: 962757482}
+  - {fileID: 1070272125}
+  - {fileID: 1880717344}
+  - {fileID: 979692385}
+  - {fileID: 1815530756}
 --- !u!1 &1485039530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2792,6 +2834,18 @@ Transform:
   m_Father: {fileID: 2033328614}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1815530756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5650577351842431529, guid: 4dc37756d8d8bc7418aad7323d6b01d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2958688638995887354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fecc35e1145024e9d9c58e4adcd05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1850940771
 GameObject:
   m_ObjectHideFlags: 0
