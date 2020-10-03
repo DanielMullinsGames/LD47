@@ -12,6 +12,9 @@ public abstract class TimelineEvent : MonoBehaviour
     [SerializeField]
     private float length = default;
 
+    [SerializeField]
+    private PlayerController.Weapon startWeapon;
+
     private float timeStarted;
     private bool playing;
 
@@ -19,6 +22,7 @@ public abstract class TimelineEvent : MonoBehaviour
     {
         Survived = true;
         playing = false;
+        PlayerController.Instance.GainWeapon(startWeapon);
         ResetToStart();
     }
 
