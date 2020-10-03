@@ -56,6 +56,7 @@ public class TimelineController : Singleton<TimelineController>
 
     private IEnumerator PlayFromMarker()
     {
+        CameraEffects.Instance.ShowRewind();
         bool survived = true;
         PlayerController.Instance.Anim.Play("idle", 0, 0f);
 
