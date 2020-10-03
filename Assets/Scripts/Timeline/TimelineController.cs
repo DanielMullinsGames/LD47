@@ -8,6 +8,30 @@ public class TimelineController : Singleton<TimelineController>
     public int NumEventsInActiveRange => (((events.Count / 2) - markerPosition) * 2) + 1;
     public int ActiveRangeEventProgress => markerPosition - rangeStartPosition;
 
+    public float NormalizedTime
+    {
+        get
+        {
+            float time = 0f;
+            for (int i = 0; i < markerPosition; i++)
+            {
+                time += events[i].Length;
+            }
+            time += CurrentEvent.Length * CurrentEvent.EventProgress;
+            return time / TimelineTotalLength;
+        }
+    }
+
+    private float TimelineTotalLength
+    { 
+        get
+        {
+            float sum = 0f;
+            events.ForEach(x => sum += x.Length);
+            return sum;
+        } 
+    }
+
     private bool ReachedEnd => markerPosition == events.Count;
 
     [SerializeField]

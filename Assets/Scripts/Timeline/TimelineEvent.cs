@@ -6,10 +6,11 @@ public abstract class TimelineEvent : MonoBehaviour
 {
     public bool Survived { get; protected set; }
 
-    public float EventProgress => Mathf.Clamp((Time.time - timeStarted) / timeUntilDeath, 0f, 1f);
+    public float EventProgress => Mathf.Clamp((Time.time - timeStarted) / length, 0f, 1f);
 
+    public float Length => length;
     [SerializeField]
-    private float timeUntilDeath = default;
+    private float length = default;
 
     private float timeStarted;
 
