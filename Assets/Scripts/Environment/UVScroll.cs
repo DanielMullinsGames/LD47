@@ -11,7 +11,10 @@ public class UVScroll : MonoBehaviour
 
     private void Update()
     {
-        currentScroll += speed * Time.deltaTime;
-        GetComponent<Renderer>().material.mainTextureOffset = new Vector2(currentScroll, 0);
+        if (!AnimationPauser.Instance.Paused)
+        {
+            currentScroll += speed * Time.deltaTime;
+            GetComponent<Renderer>().material.mainTextureOffset = new Vector2(currentScroll, 0);
+        }
     }
 }
