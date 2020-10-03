@@ -16,8 +16,12 @@ public class EnemyEvent : TimelineEvent
     [SerializeField]
     private float telegraphTime = 0.75f;
 
+    [SerializeField]
+    private PlayerController.Weapon startWeapon;
+
     protected override void ResetToStart()
     {
+        PlayerController.Instance.GainWeapon(startWeapon);
         enemy.transform.position = new Vector2(startMarker.position.x, enemy.transform.position.y);
         enemy.ResetToStart();
     }
