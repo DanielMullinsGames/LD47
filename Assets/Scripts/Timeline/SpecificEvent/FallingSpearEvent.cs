@@ -26,6 +26,7 @@ public class FallingSpearEvent : TimelineEvent
             // impale animation
             Survived = false;
             PlayerController.Instance.Anim.SetTrigger("impale");
+            PlayerController.Instance.Die();
             yield return new WaitForEndOfFrame();
             fallingSpear.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.3f);

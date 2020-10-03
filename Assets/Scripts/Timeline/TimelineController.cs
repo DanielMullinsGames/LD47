@@ -58,7 +58,7 @@ public class TimelineController : Singleton<TimelineController>
     {
         CameraEffects.Instance.ShowRewind();
         bool survived = true;
-        PlayerController.Instance.Anim.Play("idle", 0, 0f);
+        PlayerController.Instance.Reset();
 
         while (survived && !ReachedEnd)
         {
