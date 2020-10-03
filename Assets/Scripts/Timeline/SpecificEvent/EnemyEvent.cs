@@ -39,6 +39,7 @@ public class EnemyEvent : TimelineEvent
 
         if (!enemy.Dead)
         {
+            PlayerController.Instance.CurrentEnemyTarget = enemy;
             enemy.RaiseWeapon();
             float strikeTimer = 0f;
             while (strikeTimer < telegraphTime && !enemy.Dead)
@@ -46,12 +47,8 @@ public class EnemyEvent : TimelineEvent
                 strikeTimer += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
-            
-            if (enemy.Dead)
-            {
 
-            }
-            else
+            if (!enemy.Dead)
             {
                 enemy.Strike();
                 yield return new WaitForSeconds(0.1f);

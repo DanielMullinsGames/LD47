@@ -19,14 +19,17 @@ public class PlayerController : Singleton<PlayerController>
         Knife,
     }
 
+    public SimpleEnemy CurrentEnemyTarget { get; set; }
+
     public bool Ducking => currentState == State.Ducking;
     public bool Dead => currentState == State.Dead;
     public Animator Anim => GetComponentInChildren<Animator>();
 
+    public Weapon CurrentWeaponId { get; private set; }
+    private GameObject CurrentWeapon => weapons[(int)CurrentWeaponId];
     [SerializeField]
     private List<GameObject> weapons;
 
-    private GameObject currentWeapon;
     private bool releasedAttack;
 
     private State currentState = State.Standing;
@@ -34,6 +37,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void Reset()
     {
+        CurrentEnemyTarget = null;
         SetState(State.Standing);
         Anim.Play("idle", 0, 0f);
         Anim.ResetTrigger("prepare_attack");
@@ -44,20 +48,19 @@ public class PlayerController : Singleton<PlayerController>
     public void Die()
     {
         SetState(State.Dead);
-        StopCoroutine(attackCooldownCoroutine);
+        if (attackCooldownCoroutine != null)
+        {
+            StopCoroutine(attackCooldownCoroutine);
+        }
     }
 
     public void GainWeapon(Weapon weapon, bool immediate = true)
     {
-        if (weapon == Weapon.None)
+        weapons.ForEach(x => x.SetActive(false));
+        CurrentWeaponId = weapon;
+        if (weapon != Weapon.None)
         {
-            currentWeapon = null;
-        }
-        else
-        {
-            currentWeapon = weapons[(int)weapon];
-            weapons.ForEach(x => x.SetActive(false));
-            currentWeapon.SetActive(true);
+            CurrentWeapon.SetActive(true);
         }
     }
 
@@ -65,7 +68,20 @@ public class PlayerController : Singleton<PlayerController>
     {
         Anim.Play("attack", 0, 0f);
         releasedAttack = true;
+        CustomCoroutine.WaitThenExecute(0.05f, () => AttackConnect());
         attackCooldownCoroutine = StartCoroutine(AttackCooldown());
+    }
+
+    private void AttackConnect()
+    {
+        if (!Dead)
+        {
+            if (CurrentEnemyTarget != null)
+            {
+                GainWeapon(Weapon.None);
+                CurrentEnemyTarget.Die();
+            }
+        }
     }
 
     private IEnumerator AttackCooldown()
@@ -104,7 +120,7 @@ public class PlayerController : Singleton<PlayerController>
                 {
                     SetState(State.Ducking);
                 }
-                if (currentWeapon != null && Input.GetButtonDown("Attack"))
+                if (CurrentWeapon != null && Input.GetButtonDown("Attack"))
                 {
                     SetState(State.PreparingAttack);
                 }

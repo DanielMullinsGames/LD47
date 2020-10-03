@@ -31,6 +31,7 @@ public class SimpleEnemy : MonoBehaviour
     public void Die()
     {
         Dead = true;
+        anim.Play("die", 0, 0f);
     }
 
     public void MoveToTarget(float xPos)
