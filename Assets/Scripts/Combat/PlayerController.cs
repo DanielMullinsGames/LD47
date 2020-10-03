@@ -10,6 +10,7 @@ public class PlayerController : Singleton<PlayerController>
         Ducking,
         Dead,
         PreparingAttack,
+        PreparingThrow,
         Moving,
     }
 
@@ -22,6 +23,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public SimpleEnemy CurrentEnemyTarget { get; set; }
 
+    public bool Throwing { get; private set; }
     public bool Ducking => currentState == State.Ducking;
     public bool Dead => currentState == State.Dead;
     public Animator Anim => GetComponentInChildren<Animator>();
@@ -32,17 +34,22 @@ public class PlayerController : Singleton<PlayerController>
     private List<GameObject> weapons;
 
     private bool releasedAttack;
+    private bool releasedThrow;
 
     private State currentState = State.Standing;
     private Coroutine attackCooldownCoroutine;
+    private Coroutine throwCooldownCoroutine;
 
     public void Reset()
     {
         CurrentEnemyTarget = null;
+        Throwing = false;
         SetState(State.Standing);
         Anim.Play("idle", 0, 0f);
         Anim.ResetTrigger("prepare_attack");
         Anim.ResetTrigger("end_attack");
+        Anim.ResetTrigger("prepare_throw");
+        Anim.ResetTrigger("end_throw");
         StopAllCoroutines();
     }
 
@@ -63,6 +70,11 @@ public class PlayerController : Singleton<PlayerController>
         {
             StopCoroutine(attackCooldownCoroutine);
         }
+        if (throwCooldownCoroutine != null)
+        {
+            StopCoroutine(throwCooldownCoroutine);
+        }
+        Throwing = false;
     }
 
     public void GainWeapon(Weapon weapon, bool immediate = true)
@@ -102,6 +114,23 @@ public class PlayerController : Singleton<PlayerController>
         SetState(State.Standing);
     }
 
+    private void Throw()
+    {
+        Anim.Play("throw", 0, 0f);
+        releasedThrow = true;
+        throwCooldownCoroutine = StartCoroutine(ThrowCooldown());
+    }
+
+    private IEnumerator ThrowCooldown()
+    {
+        Throwing = true;
+        yield return new WaitForSeconds(0.25f);
+        Throwing = false;
+        Anim.SetTrigger("end_throw");
+        GainWeapon(Weapon.None);
+        SetState(State.Standing);
+    }
+
     private void SetState(State newState)
     {
         if (newState == State.Ducking)
@@ -118,6 +147,12 @@ public class PlayerController : Singleton<PlayerController>
         {
             Anim.SetTrigger("prepare_attack");
             releasedAttack = false;
+        }
+
+        if (newState == State.PreparingThrow)
+        {
+            Anim.SetTrigger("prepare_throw");
+            releasedThrow = false;
         }
 
         if (newState == State.Moving)
@@ -140,9 +175,16 @@ public class PlayerController : Singleton<PlayerController>
                 {
                     SetState(State.Ducking);
                 }
-                if (CurrentWeaponId != Weapon.None && Input.GetButtonDown("Attack"))
+                if (CurrentWeaponId != Weapon.None)
                 {
-                    SetState(State.PreparingAttack);
+                    if (Input.GetButtonDown("Attack"))
+                    {
+                        SetState(State.PreparingAttack);
+                    }
+                    else if (Input.GetButtonDown("Throw"))
+                    {
+                        SetState(State.PreparingThrow);
+                    }
                 }
                 break;
             case State.Ducking:
@@ -155,6 +197,12 @@ public class PlayerController : Singleton<PlayerController>
                 if (!releasedAttack && Input.GetButtonUp("Attack"))
                 {
                     Attack();
+                }
+                break;
+            case State.PreparingThrow:
+                if (!releasedThrow && Input.GetButtonUp("Throw"))
+                {
+                    Throw();
                 }
                 break;
         }
