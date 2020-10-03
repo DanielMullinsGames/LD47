@@ -67,7 +67,7 @@ public class TimelineBar : Singleton<TimelineBar>
 
     private void Update()
     {
-        if (TimelineController.Instance.CurrentEvent.Survived)
+        if (!TimelineController.Instance.EndOfTimeline && TimelineController.Instance.CurrentEvent.Survived)
         {
             int numEventsInRange = TimelineController.Instance.NumEventsInActiveRange;
             float timelineProgress = TimelineController.Instance.ActiveRangeEventProgress / (float)numEventsInRange;

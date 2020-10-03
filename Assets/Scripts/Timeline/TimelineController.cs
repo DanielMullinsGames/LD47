@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class TimelineController : Singleton<TimelineController>
 {
-    public TimelineEvent CurrentEvent => events[markerIndex];
-    public int NumEventsInTimeline => events.Count;
-    public int NumEventsInActiveRange => (((events.Count / 2) - markerIndex) * 2) + 1;
-    public int ActiveRangeEventProgress => markerIndex - RangeStartIndex;
-
     public float NormalizedTime
     {
         get
@@ -24,18 +19,22 @@ public class TimelineController : Singleton<TimelineController>
     }
 
     private float TimelineTotalLength
-    { 
+    {
         get
         {
             float sum = 0f;
             events.ForEach(x => sum += x.Length);
             return sum;
-        } 
+        }
     }
 
+    public bool EndOfTimeline => CurrentEvent == null;
+    public TimelineEvent CurrentEvent => markerIndex < events.Count ? events[markerIndex] : null;
+    public int NumEventsInTimeline => events.Count;
+    public int NumEventsInActiveRange => (((events.Count / 2) - RangeStartIndex) * 2) + 1;
+    public int ActiveRangeEventProgress => markerIndex - RangeStartIndex;
     public int RangeStartIndex { get; private set; }
     public int RangeEndIndex => RangeCenterIndex + (RangeCenterIndex - RangeStartIndex + 1);
-    private bool EndOfTimeline => markerIndex == events.Count;
     private int RangeCenterIndex => Mathf.CeilToInt(events.Count / 2f) - 1;
 
     [SerializeField]
@@ -60,8 +59,10 @@ public class TimelineController : Singleton<TimelineController>
     private IEnumerator PlayFromMarker()
     {
         CameraEffects.Instance.ShowRewind();
-        bool survived = true;
         PlayerController.Instance.Reset();
+
+        bool survived = true;
+        markerIndex = RangeStartIndex;
 
         while (survived && !EndOfTimeline)
         {
@@ -73,7 +74,13 @@ public class TimelineController : Singleton<TimelineController>
             {
                 markerIndex++;
 
-                if (markerIndex > RangeEndIndex)
+                if (EndOfTimeline)
+                {
+                    // END
+                    AnimationPauser.Instance.SetPaused(true);
+                    break;
+                }
+                else if (markerIndex >= RangeEndIndex)
                 {
                     yield return ExpandActiveRange();
                     break;

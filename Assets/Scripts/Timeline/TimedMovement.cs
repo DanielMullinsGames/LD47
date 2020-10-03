@@ -12,7 +12,10 @@ public class TimedMovement : MonoBehaviour
 
     private void Update()
     {
-        float currentX = Mathf.Lerp(startX, endX, TimelineController.Instance.NormalizedTime);
-        transform.position = new Vector2(currentX, transform.position.y);
+        if (!TimelineController.Instance.EndOfTimeline)
+        {
+            float currentX = Mathf.Lerp(startX, endX, TimelineController.Instance.NormalizedTime);
+            transform.position = new Vector2(currentX, transform.position.y);
+        }
     }
 }
