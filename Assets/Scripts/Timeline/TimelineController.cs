@@ -33,6 +33,7 @@ public class TimelineController : Singleton<TimelineController>
     private IEnumerator PlayFromMarker()
     {
         bool survived = true;
+        PlayerController.Instance.Anim.Play("idle", 0, 0f);
 
         while (survived && !ReachedEnd)
         {

@@ -21,7 +21,7 @@ public abstract class TimelineEvent : MonoBehaviour
     public IEnumerator PlayEvent()
     {
         timeStarted = Time.time;
-        Survived = false;
+        Survived = true;
         yield return EventSequence();
     }
 
