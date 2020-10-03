@@ -34,7 +34,7 @@ public class FallingEnemyEvent : TimelineEvent
         fallingEnemy.gameObject.SetActive(false);
         fallingEnemy.transform.position = startMarker.position;
         fallingEnemyAnim.Play("falling", 0, 0f);
-        enemyDagger.SetActive(true);
+        GeneralReset();
     }
 
     protected override void ResetToEnd()
@@ -42,6 +42,12 @@ public class FallingEnemyEvent : TimelineEvent
         fallingEnemy.gameObject.SetActive(true);
         fallingEnemy.transform.position = corpseMarker.position;
         fallingEnemyAnim.Play("die", 0, 1f);
+    }
+
+    private void GeneralReset()
+    {
+        Tween.Cancel(fallingEnemy.GetInstanceID());
+        fallingEnemyAnim.ResetTrigger("die");
         enemyDagger.SetActive(true);
     }
 
@@ -52,18 +58,29 @@ public class FallingEnemyEvent : TimelineEvent
         Tween.Position(fallingEnemy, endMarker.position, fallDuration, 0f, Tween.EaseIn);
 
         float timer = 0f;
-        while (timer < durationUntilImpact) // check for enemy dead
+        while (timer < durationUntilImpact && !PlayerController.Instance.Throwing)
         {
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
-        // if not enemy dead
-        enemyDagger.SetActive(false);
-        Survived = false;
-        PlayerController.Instance.Anim.SetTrigger("knife");
-        PlayerController.Instance.Die();
-        yield return new WaitForSeconds(0.3f);
-        yield break;
+        if (PlayerController.Instance.Throwing)
+        {
+            Tween.Cancel(fallingEnemy.GetInstanceID());
+            fallingEnemyAnim.SetTrigger("die");
+
+            Vector2 landingPos = new Vector2(fallingEnemy.position.x, corpseMarker.position.y);
+            Tween.Position(fallingEnemy.transform, landingPos, 0.15f, 0.1f, Tween.EaseIn);
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            enemyDagger.SetActive(false);
+            Survived = false;
+            PlayerController.Instance.Anim.SetTrigger("knife");
+            PlayerController.Instance.Die();
+            yield return new WaitForSeconds(0.3f);
+            yield break;
+        }
     }
 }
