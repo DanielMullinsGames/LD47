@@ -33,6 +33,9 @@ public class DialogueEvent : TimelineEvent
     [SerializeField]
     private Transform landMarker;
 
+    [SerializeField]
+    private GameObject campAudio;
+
     private bool returned;
 
     private void Awake()
@@ -64,6 +67,14 @@ public class DialogueEvent : TimelineEvent
 
     protected override IEnumerator EventSequence()
     {
+        if (campAudio != null)
+        {
+            CustomCoroutine.WaitThenExecute(2f, () =>
+            {
+                campAudio.SetActive(true);
+                AudioController.Instance.FadeOutLoop(2f);
+            });
+        }
         if (skipHint != null && returned)
         {
             skipHint.SetActive(true);

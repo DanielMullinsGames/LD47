@@ -12,8 +12,18 @@ public class AnimationPauser : Singleton<AnimationPauser>
     [SerializeField]
     private List<MonoBehaviour> scriptsToPause = default;
 
+    [SerializeField]
+    private AudioSource pauseSound;
+
     public void SetPaused(bool paused)
     {
+        pauseSound.gameObject.SetActive(paused);
+        if (paused)
+        {
+            pauseSound.Stop();
+            pauseSound.Play();
+        }
+
         AudioController.Instance.SetLoopPaused(paused);
 
         Paused = paused;

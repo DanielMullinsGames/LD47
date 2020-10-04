@@ -25,6 +25,7 @@ public class VictoryEvent : TimelineEvent
         yield return new WaitForSeconds(1f);
 
         flag.SetTrigger("change");
+        var trumpetSound = AudioController.Instance.PlaySound2D("trumpet_blare", volume: 0.5f);
         yield return new WaitForSeconds(2f);
 
         if (!TutorialProgress.victory)
@@ -41,6 +42,10 @@ public class VictoryEvent : TimelineEvent
             TimelineController.Instance.RangeStartIndex = preBattleEvents.Count;
 
             TutorialProgress.victory = true;
+            if (trumpetSound != null)
+            {
+                Destroy(trumpetSound.gameObject);
+            }
         }
     }
 }

@@ -115,6 +115,7 @@ public class TimelineController : Singleton<TimelineController>
 
     private IEnumerator ExpandActiveRange()
     {
+        AudioController.Instance.PlaySound2D("bong", skipToTime: 0.15f);
         AnimationPauser.Instance.SetPaused(true);
         yield return new WaitForSeconds(0.5f);
 

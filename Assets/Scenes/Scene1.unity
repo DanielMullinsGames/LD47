@@ -2878,6 +2878,7 @@ MonoBehaviour:
   fallingSpear: {fileID: 0}
   startMarker: {fileID: 0}
   landMarker: {fileID: 0}
+  campAudio: {fileID: 737171117}
 --- !u!1 &451371260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4601,6 +4602,133 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345708fced4f1b44c854a47de6cbd4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &737171117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 737171119}
+  - component: {fileID: 737171118}
+  m_Layer: 0
+  m_Name: CampAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!82 &737171118
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737171117}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bf9c516dfcc0aa94a85eabf26cca9059, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.6
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &737171119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737171117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &781834170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10158,8 +10286,8 @@ MonoBehaviour:
   - {fileID: 4003560173302932684}
   - {fileID: 1151562615}
   - {fileID: 4032502081337511782}
-  debugStartRangeIndex: 7
-  debugStartMarker: 0
+  debugStartRangeIndex: 0
+  debugStartMarker: 14
 --- !u!114 &1463858606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10213,6 +10341,7 @@ MonoBehaviour:
   - {fileID: 979692385}
   - {fileID: 1815530756}
   - {fileID: 7683543503634696203}
+  pauseSound: {fileID: 1590166223}
 --- !u!1 &1481168345
 GameObject:
   m_ObjectHideFlags: 0
@@ -10279,6 +10408,7 @@ MonoBehaviour:
   fallingSpear: {fileID: 8447208914402596369}
   startMarker: {fileID: 8447208914615958173}
   landMarker: {fileID: 8447208914686339127}
+  campAudio: {fileID: 0}
 --- !u!1 &1485039530
 GameObject:
   m_ObjectHideFlags: 0
@@ -10731,6 +10861,133 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531d921687a417b44926a61e158ba43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1590166222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1590166224}
+  - component: {fileID: 1590166223}
+  m_Layer: 0
+  m_Name: PauseSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!82 &1590166223
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590166222}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 52c4f33bc427ff746b39c133e783d1fe, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.03
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1590166224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590166222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1600294577
 GameObject:
   m_ObjectHideFlags: 0
@@ -11081,6 +11338,7 @@ MonoBehaviour:
   fallingSpear: {fileID: 0}
   startMarker: {fileID: 0}
   landMarker: {fileID: 0}
+  campAudio: {fileID: 0}
 --- !u!4 &1651286016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4003560173233780251, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
@@ -11347,6 +11605,7 @@ MonoBehaviour:
   fallingSpear: {fileID: 0}
   startMarker: {fileID: 0}
   landMarker: {fileID: 0}
+  campAudio: {fileID: 0}
 --- !u!1 &1746730720
 GameObject:
   m_ObjectHideFlags: 0
@@ -11520,6 +11779,7 @@ MonoBehaviour:
   fallingSpear: {fileID: 0}
   startMarker: {fileID: 0}
   landMarker: {fileID: 0}
+  campAudio: {fileID: 0}
 --- !u!1001 &1779367329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14427,6 +14687,7 @@ MonoBehaviour:
   fallingSpear: {fileID: 0}
   startMarker: {fileID: 0}
   landMarker: {fileID: 0}
+  campAudio: {fileID: 0}
 --- !u!1001 &2099987954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17890,6 +18151,7 @@ MonoBehaviour:
   fallingSpear: {fileID: 0}
   startMarker: {fileID: 0}
   landMarker: {fileID: 0}
+  campAudio: {fileID: 0}
 --- !u!1001 &4003560173453307166
 PrefabInstance:
   m_ObjectHideFlags: 0
