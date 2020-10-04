@@ -158,7 +158,7 @@ public class SequentialText : MonoBehaviour
 
     private bool Skipping()
     {
-        return Input.GetButton("Duck") || Input.GetButton("Attack") || Input.GetButton("Throw");
+        return Input.anyKey;
     }
 
     private void PlaySound()
