@@ -12,8 +12,7 @@ public abstract class TimelineEvent : MonoBehaviour
     [SerializeField]
     private float length = default;
 
-    [SerializeField]
-    private PlayerController.Weapon startWeapon;
+    public PlayerController.Weapon startWeapon;
 
     private float timeStarted;
     private bool playing;

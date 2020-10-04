@@ -164,5 +164,6 @@ public class TimelineController : Singleton<TimelineController>
                 events[i].ResetEventToEnd();
             }
         }
+        PlayerController.Instance.GainWeapon(events[index].startWeapon);
     }
 }
