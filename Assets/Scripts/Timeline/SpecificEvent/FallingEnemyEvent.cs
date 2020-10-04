@@ -40,6 +40,7 @@ public class FallingEnemyEvent : TimelineEvent
         fallingEnemy.transform.position = startMarker.position;
         fallingEnemyAnim.Play("falling", 0, 0f);
         sortingGroup.sortingOrder = 2;
+        enemyDagger.GetComponent<SpriteRenderer>().enabled = true;
         GeneralReset();
     }
 
@@ -49,13 +50,13 @@ public class FallingEnemyEvent : TimelineEvent
         fallingEnemy.transform.position = corpseMarker.position;
         fallingEnemyAnim.Play("die", 0, 1f);
         sortingGroup.sortingOrder = 10;
+        enemyDagger.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private void GeneralReset()
     {
         Tween.Cancel(fallingEnemy.GetInstanceID());
         fallingEnemyAnim.ResetTrigger("die");
-        enemyDagger.SetActive(true);
 
         if (screamSound != null)
         {
@@ -95,7 +96,7 @@ public class FallingEnemyEvent : TimelineEvent
         }
         else
         {
-            enemyDagger.SetActive(false);
+            enemyDagger.GetComponent<SpriteRenderer>().enabled = false;
             Survived = false;
             PlayerController.Instance.Anim.SetTrigger("knife");
             PlayerController.Instance.Die();

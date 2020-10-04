@@ -23,6 +23,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public SimpleEnemy CurrentEnemyTarget { get; set; }
 
+    public bool Moving => currentState == State.Moving;
     public bool Throwing { get; private set; }
     public bool Ducking => currentState == State.Ducking;
     public bool Dead => currentState == State.Dead;

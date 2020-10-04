@@ -30,9 +30,9 @@ public class FlyingArrowEvent : TimelineEvent
         AudioController.Instance.PlaySound2D("twang", MixerGroup.None, volume: 0.25f, pitch: new AudioParams.Pitch(1.5f));
         arrow.gameObject.SetActive(true);
 
-        Tween.Position(arrow, endMarker.position, 1.5f, 0f, Tween.EaseIn);
+        Tween.Position(arrow, endMarker.position, 2f, 0f, Tween.EaseIn);
         
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1.1f);
         if (!PlayerController.Instance.Ducking)
         {
             Survived = false;

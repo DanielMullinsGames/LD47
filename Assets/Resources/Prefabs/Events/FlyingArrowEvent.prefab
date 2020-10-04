@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497c48a0b81882c4a9456be0cec01cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 1
+  length: 1.5
   startWeapon: 2
   arrow: {fileID: 589639233114162449}
   startMarker: {fileID: 59528775332506155}

@@ -16,6 +16,9 @@ public class SimpleEnemy : MonoBehaviour
     [SerializeField]
     private SortingGroup sortingGroup;
 
+    [SerializeField]
+    private SpriteRenderer weaponSprite;
+
     private bool hasTarget;
     private float targetX;
 
@@ -27,12 +30,14 @@ public class SimpleEnemy : MonoBehaviour
         Dead = false;
         anim.Play("running", 0, 0f);
         hasTarget = false;
+        weaponSprite.enabled = true;
     }
 
     public void ResetToEnd()
     {
         anim.Play("die", 0, 1f);
         sortingGroup.sortingOrder = 10;
+        weaponSprite.enabled = false;
     }
 
     public void Die()
