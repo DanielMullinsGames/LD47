@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pixelplacement;
 
 public class CameraEffects : Singleton<CameraEffects>
 {
@@ -9,6 +10,11 @@ public class CameraEffects : Singleton<CameraEffects>
 
     [SerializeField]
     private UnityStandardAssets.ImageEffects.Grayscale grayScaleEffect;
+
+    public void Shake()
+    {
+        GetComponent<Animation>().Play();
+    }
 
 	public void ShowRewind()
     {

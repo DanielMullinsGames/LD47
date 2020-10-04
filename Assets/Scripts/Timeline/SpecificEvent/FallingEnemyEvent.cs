@@ -85,6 +85,9 @@ public class FallingEnemyEvent : TimelineEvent
             fallingEnemyAnim.SetTrigger("die");
             Destroy(screamSound);
             AudioController.Instance.PlaySound2D("enemy_scream_short");
+            AudioController.Instance.PlaySound2D("misc_crunch_1", pitch: new AudioParams.Pitch(AudioParams.Pitch.Variation.Small));
+            CameraEffects.Instance.Shake();
+            sortingGroup.sortingOrder = 10;
 
             Vector2 landingPos = new Vector2(fallingEnemy.position.x, corpseMarker.position.y);
             Tween.Position(fallingEnemy.transform, landingPos, 0.15f, 0.1f, Tween.EaseIn);

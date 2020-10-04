@@ -41,6 +41,7 @@ public class SimpleEnemy : MonoBehaviour
         Dead = true;
         anim.Play("die", 0, 0f);
         sortingGroup.sortingOrder = 10;
+        CameraEffects.Instance.Shake();
     }
 
     public void MoveToTarget(float xPos)

@@ -7,19 +7,19 @@ public class CameraController : Singleton<CameraController>
 {
 	public float MoveToPoint(float pointX, bool immediate = false)
     {
-        Vector3 pos = new Vector3(pointX, transform.position.y, transform.position.z);
+        Vector3 pos = new Vector3(pointX, transform.parent.position.y, transform.parent.position.z);
 
         if (immediate)
         {
-            transform.position = pos;
+            transform.parent.position = pos;
             return 0f;
         }
         else
         {
-            float dist = Mathf.Abs(transform.position.x - pointX);
+            float dist = Mathf.Abs(transform.parent.position.x - pointX);
             float duration = dist * 0.05f;
             PlayerController.Instance.StartMove();
-            Tween.Position(transform, pos, duration, 0f, Tween.EaseInOut, completeCallback: () => PlayerController.Instance.EndMove());
+            Tween.Position(transform.parent, pos, duration, 0f, Tween.EaseInOut, completeCallback: () => PlayerController.Instance.EndMove());
             return duration;
         }
     }
