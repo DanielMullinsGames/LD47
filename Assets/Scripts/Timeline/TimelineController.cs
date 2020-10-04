@@ -42,9 +42,19 @@ public class TimelineController : Singleton<TimelineController>
 
     private int currentPositionIndex;
 
+#if UNITY_EDITOR
+    [Header("DEBUG")]
+    public int debugStartRangeIndex;
+#endif
+
     private void Start()
     {
         currentPositionIndex = RangeStartIndex = RangeCenterIndex;
+
+#if UNITY_EDITOR
+        currentPositionIndex = RangeStartIndex = debugStartRangeIndex;
+#endif
+
         SkipToStartOfEvent(currentPositionIndex);
         StartCoroutine(MainLoop());
     }
