@@ -2865,7 +2865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 7
-  startWeapon: 2
+  startWeapon: 0
   dialogueBubbles:
   - {fileID: 726363277}
   - {fileID: 1300252277}
@@ -8096,6 +8096,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7399158735321643488, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e, type: 3}
 --- !u!4 &1151562614 stripped
@@ -10394,7 +10399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 7
-  startWeapon: 2
+  startWeapon: 0
   dialogueBubbles:
   - {fileID: 1935885005}
   - {fileID: 1795787320}
@@ -14676,7 +14681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 7
-  startWeapon: 2
+  startWeapon: 0
   dialogueBubbles:
   - {fileID: 1958223068}
   liveComrade: {fileID: 0}
@@ -18456,7 +18461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 3
-  startWeapon: 2
+  startWeapon: 0
   preBattleEvents:
   - {fileID: 1758033842}
   - {fileID: 1731806431}
