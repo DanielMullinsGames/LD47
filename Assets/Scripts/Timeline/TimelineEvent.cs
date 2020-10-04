@@ -23,6 +23,7 @@ public abstract class TimelineEvent : MonoBehaviour
         Survived = true;
         playing = false;
         PlayerController.Instance.GainWeapon(startWeapon);
+        PlayerController.Instance.CurrentEnemyTarget = null;
         ResetToStart();
     }
 
