@@ -12,6 +12,12 @@ public class FallingEnemyEvent : TimelineEvent
     private Animator fallingEnemyAnim;
 
     [SerializeField]
+    private GameObject signal;
+
+    [SerializeField]
+    private Transform signalStart;
+
+    [SerializeField]
     private GameObject enemyDagger;
 
     [SerializeField]
@@ -77,7 +83,14 @@ public class FallingEnemyEvent : TimelineEvent
         }
 
         screamSound = AudioController.Instance.PlaySound2D("enemy_scream").gameObject;
+        yield return new WaitForSeconds(0.2f);
+
+        signal.SetActive(true);
+        signal.transform.position = signalStart.position;
+        Tween.Position(signal.transform, signalStart.position + new Vector3(-2f, 5f), 0.5f, 0f, Tween.EaseInOut);
+
         yield return new WaitForSeconds(0.5f);
+        signal.SetActive(false);
         fallingEnemy.gameObject.SetActive(true);
 
         Tween.Position(fallingEnemy, endMarker.position, fallDuration, 0f, Tween.EaseIn);
