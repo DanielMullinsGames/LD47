@@ -35,12 +35,20 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField]
     private List<GameObject> weapons;
 
+    [SerializeField]
+    private GameObject medallion;
+
     private bool releasedAttack;
     private bool releasedThrow;
 
     private State currentState = State.Standing;
     private Coroutine attackCooldownCoroutine;
     private Coroutine throwCooldownCoroutine;
+
+    public void HideMedallion()
+    {
+        medallion.SetActive(false);
+    }
 
     public void Reset()
     {

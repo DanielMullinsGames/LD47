@@ -15,6 +15,15 @@ public class DialogueEvent : TimelineEvent
     [SerializeField]
     private GameObject skipHint;
 
+    [SerializeField]
+    private bool finale;
+
+    [SerializeField]
+    private Animator wife;
+
+    [SerializeField]
+    private GameObject wifeMedallion;
+
     private bool returned;
 
     private void Awake()
@@ -69,7 +78,25 @@ public class DialogueEvent : TimelineEvent
             liveComrade.gameObject.SetActive(false);
         }
 
-        PlayerController.Instance.enabled = true;
+        if (finale)
+        {
+            yield return Finale();
+        }
+        else
+        {
+            PlayerController.Instance.enabled = true;
+        }
         returned = true;
+    }
+
+    private IEnumerator Finale()
+    {
+        yield return new WaitForSeconds(0.5f);
+        PlayerController.Instance.HideMedallion();
+        wife.SetTrigger("gain_medallion");
+        wifeMedallion.SetActive(true);
+        AudioController.Instance.PlaySound2D("misc_crunch_1");
+
+        yield return new WaitForSeconds(3f);
     }
 }
