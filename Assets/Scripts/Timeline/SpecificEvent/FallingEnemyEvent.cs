@@ -66,7 +66,8 @@ public class FallingEnemyEvent : TimelineEvent
 
         if (PlayerController.Instance.Throwing)
         {
-            Tween.Cancel(fallingEnemy.GetInstanceID());
+            yield return new WaitForSeconds((durationUntilImpact * durationUntilImpact) - timer);
+            Tween.Stop(fallingEnemy.GetInstanceID());
             fallingEnemyAnim.SetTrigger("die");
 
             Vector2 landingPos = new Vector2(fallingEnemy.position.x, corpseMarker.position.y);
