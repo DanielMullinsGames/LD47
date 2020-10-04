@@ -115,7 +115,7 @@ public class SequentialText : MonoBehaviour
         {
             if (message[index].ToString() == " ")
             {
-                yield return new WaitForSeconds(0.025f);
+                yield return new WaitForSeconds(Skipping() ? 0.01f : 0.025f);
             }
             else 
             {
@@ -135,7 +135,7 @@ public class SequentialText : MonoBehaviour
 
             if (index > 0 && (message[index-1] == '.' || message[index-1] == '?' || message[index-1] == '!'))
             {
-                yield return new WaitForSeconds(Skipping() ? 0.03f : 0.3f);
+                yield return new WaitForSeconds(Skipping() ? 0.01f : 0.3f);
             }
 
             float adjustedFrequency = Mathf.Clamp(characterFrequency * 0.01f, 0.01f, 0.2f);
@@ -152,7 +152,7 @@ public class SequentialText : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(Skipping() ? 0.05f : 0.15f);
         PlayingMessage = false;
     }
 

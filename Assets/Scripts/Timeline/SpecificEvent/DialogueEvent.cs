@@ -12,6 +12,11 @@ public class DialogueEvent : TimelineEvent
     private Transform liveComrade;
     private Vector2 comradeStartPos;
 
+    [SerializeField]
+    private GameObject skipHint;
+
+    private bool returned;
+
     private void Awake()
     {
         if (liveComrade != null)
@@ -41,6 +46,11 @@ public class DialogueEvent : TimelineEvent
 
     protected override IEnumerator EventSequence()
     {
+        if (skipHint != null && returned)
+        {
+            skipHint.SetActive(true);
+        }
+
         PlayerController.Instance.enabled = false;
         yield return new WaitForSeconds(0.2f);
         foreach (DialogueBubble b in dialogueBubbles)
@@ -60,5 +70,6 @@ public class DialogueEvent : TimelineEvent
         }
 
         PlayerController.Instance.enabled = true;
+        returned = true;
     }
 }
