@@ -45,6 +45,8 @@ public class TimelineController : Singleton<TimelineController>
 #if UNITY_EDITOR
     [Header("DEBUG")]
     public int debugStartRangeIndex;
+
+    public int debugStartMarker;
 #endif
 
     private void Start()
@@ -52,7 +54,8 @@ public class TimelineController : Singleton<TimelineController>
         currentPositionIndex = RangeStartIndex = RangeCenterIndex;
 
 #if UNITY_EDITOR
-        currentPositionIndex = RangeStartIndex = debugStartRangeIndex;
+        RangeStartIndex = debugStartRangeIndex;
+        currentPositionIndex = debugStartMarker;
 #endif
 
         SkipToStartOfEvent(currentPositionIndex);
@@ -75,6 +78,14 @@ public class TimelineController : Singleton<TimelineController>
 
         bool survived = true;
         currentPositionIndex = RangeStartIndex;
+
+#if UNITY_EDITOR
+        if (debugStartMarker > 0)
+        {
+            currentPositionIndex = debugStartMarker;
+            SkipToStartOfEvent(debugStartMarker);
+        }
+#endif
 
         while (survived && !EndOfTimeline)
         {

@@ -4830,6 +4830,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1463858604}
     m_Modifications:
+    - target: {fileID: 1029732815367060409, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.99998844
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029732815367060409, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0048186486
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029732815367060409, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 179.44801
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029732815367060409, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159401505188635558, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5746960854559538933, guid: 1a829ab31fbd8244796169b161c14218,
+        type: 3}
     - target: {fileID: 4003560173121993536, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6039,7 +6065,8 @@ MonoBehaviour:
   - {fileID: 4003560173302932684}
   - {fileID: 1151562615}
   - {fileID: 4032502081337511779}
-  debugStartRangeIndex: 7
+  debugStartRangeIndex: 0
+  debugStartMarker: 13
 --- !u!114 &1463858606
 MonoBehaviour:
   m_ObjectHideFlags: 0
