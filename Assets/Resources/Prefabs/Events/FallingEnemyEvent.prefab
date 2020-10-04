@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cd13b44a6bdfb47bf97a084baa9943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 1
+  length: 1.5
   startWeapon: 1
   fallingEnemy: {fileID: 3587624029767575422}
   fallingEnemyAnim: {fileID: 3587624030341868660}
@@ -145,6 +145,7 @@ MonoBehaviour:
   startMarker: {fileID: 3587624029894309299}
   endMarker: {fileID: 3587624030290960082}
   corpseMarker: {fileID: 452134334813737691}
+  sortingGroup: {fileID: 3587624030341868659}
   fallDuration: 1
   durationUntilImpact: 0.7
 --- !u!1001 &452134334703184208
@@ -465,6 +466,12 @@ PrefabInstance:
 --- !u!4 &3587624029767575422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7683543503295192660, guid: bd5c5190ab3b31d439ac70a2e55b46b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6586693775884040490}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &3587624030341868659 stripped
+SortingGroup:
+  m_CorrespondingSourceObject: {fileID: 7683543502855509337, guid: bd5c5190ab3b31d439ac70a2e55b46b7,
     type: 3}
   m_PrefabInstance: {fileID: 6586693775884040490}
   m_PrefabAsset: {fileID: 0}

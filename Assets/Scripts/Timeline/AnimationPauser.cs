@@ -14,6 +14,8 @@ public class AnimationPauser : Singleton<AnimationPauser>
 
     public void SetPaused(bool paused)
     {
+        AudioController.Instance.SetLoopPaused(paused);
+
         Paused = paused;
         CameraEffects.Instance.ShowPaused(paused);
         animatorsToPause.ForEach(x => x.speed = paused ? 0f : 1f);

@@ -24,16 +24,22 @@ public class FallingEnemyEvent : TimelineEvent
     private Transform corpseMarker;
 
     [SerializeField]
+    private UnityEngine.Rendering.SortingGroup sortingGroup;
+
+    [SerializeField]
     private float fallDuration;
 
     [SerializeField]
     private float durationUntilImpact;
+
+    GameObject screamSound;
 
     protected override void ResetToStart()
     {
         fallingEnemy.gameObject.SetActive(false);
         fallingEnemy.transform.position = startMarker.position;
         fallingEnemyAnim.Play("falling", 0, 0f);
+        sortingGroup.sortingOrder = 2;
         GeneralReset();
     }
 
@@ -42,6 +48,7 @@ public class FallingEnemyEvent : TimelineEvent
         fallingEnemy.gameObject.SetActive(true);
         fallingEnemy.transform.position = corpseMarker.position;
         fallingEnemyAnim.Play("die", 0, 1f);
+        sortingGroup.sortingOrder = 10;
     }
 
     private void GeneralReset()
@@ -49,10 +56,17 @@ public class FallingEnemyEvent : TimelineEvent
         Tween.Cancel(fallingEnemy.GetInstanceID());
         fallingEnemyAnim.ResetTrigger("die");
         enemyDagger.SetActive(true);
+
+        if (screamSound != null)
+        {
+            Destroy(screamSound);
+        }
     }
 
     protected override IEnumerator EventSequence()
     {
+        screamSound = AudioController.Instance.PlaySound2D("enemy_scream").gameObject;
+        yield return new WaitForSeconds(0.5f);
         fallingEnemy.gameObject.SetActive(true);
 
         Tween.Position(fallingEnemy, endMarker.position, fallDuration, 0f, Tween.EaseIn);
@@ -69,6 +83,8 @@ public class FallingEnemyEvent : TimelineEvent
             yield return new WaitForSeconds((durationUntilImpact * durationUntilImpact) - timer);
             Tween.Stop(fallingEnemy.GetInstanceID());
             fallingEnemyAnim.SetTrigger("die");
+            Destroy(screamSound);
+            AudioController.Instance.PlaySound2D("enemy_scream_short");
 
             Vector2 landingPos = new Vector2(fallingEnemy.position.x, corpseMarker.position.y);
             Tween.Position(fallingEnemy.transform, landingPos, 0.15f, 0.1f, Tween.EaseIn);

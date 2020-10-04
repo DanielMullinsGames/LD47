@@ -121,6 +121,9 @@ public class TimelineController : Singleton<TimelineController>
 
     private void SkipToStartOfEvent(int index)
     {
+        AudioController.Instance.BaseLoopSource.time = NormalizedTime * 40f;
+        AudioController.Instance.PlaySound2D("reverse", volume: 0.7f, pitch: new AudioParams.Pitch(AudioParams.Pitch.Variation.Small));
+
         PlayerController.Instance.Reset();
         CameraController.Instance.MoveToPoint(events[index].transform.position.x, immediate: true);
         for (int i = 0; i < events.Count; i++)

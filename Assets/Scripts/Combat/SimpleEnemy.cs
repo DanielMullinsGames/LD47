@@ -32,10 +32,12 @@ public class SimpleEnemy : MonoBehaviour
     public void ResetToEnd()
     {
         anim.Play("die", 0, 1f);
+        sortingGroup.sortingOrder = 10;
     }
 
     public void Die()
     {
+        AudioController.Instance.PlaySound2D("misc_crunch_1", pitch: new AudioParams.Pitch(AudioParams.Pitch.Variation.Small));
         Dead = true;
         anim.Play("die", 0, 0f);
         sortingGroup.sortingOrder = 10;
@@ -43,6 +45,7 @@ public class SimpleEnemy : MonoBehaviour
 
     public void MoveToTarget(float xPos)
     {
+        AudioController.Instance.PlaySound2D("enemy_scream_short", pitch: new AudioParams.Pitch(AudioParams.Pitch.Variation.Small));
         targetX = xPos;
         hasTarget = true;
         ReachedTarget = false;

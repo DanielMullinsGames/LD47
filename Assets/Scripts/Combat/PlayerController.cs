@@ -65,6 +65,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void Die()
     {
+        AudioController.Instance.PlaySound2D("misc_crunch_1");
         SetState(State.Dead);
         if (attackCooldownCoroutine != null)
         {

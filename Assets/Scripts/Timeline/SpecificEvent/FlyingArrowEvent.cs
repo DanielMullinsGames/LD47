@@ -27,6 +27,7 @@ public class FlyingArrowEvent : TimelineEvent
 
     protected override IEnumerator EventSequence()
     {
+        AudioController.Instance.PlaySound2D("twang", MixerGroup.None, volume: 0.25f, pitch: new AudioParams.Pitch(1.5f));
         arrow.gameObject.SetActive(true);
 
         Tween.Position(arrow, endMarker.position, 1.5f, 0f, Tween.EaseIn);
