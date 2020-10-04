@@ -122,6 +122,7 @@ public class PlayerController : Singleton<PlayerController>
         Anim.Play("throw", 0, 0f);
         releasedThrow = true;
         throwCooldownCoroutine = StartCoroutine(ThrowCooldown());
+        AudioController.Instance.PlaySound2D("dodge");
     }
 
     private IEnumerator ThrowCooldown()
@@ -140,6 +141,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             Anim.Play("ducking", 0, 0f);
             Anim.SetBool("ducking", true);
+            AudioController.Instance.PlaySound2D("dodge");
         }
         else
         {
