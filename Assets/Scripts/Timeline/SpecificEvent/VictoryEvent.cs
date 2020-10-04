@@ -7,9 +7,26 @@ public class VictoryEvent : TimelineEvent
     public List<TimelineEvent> preBattleEvents;
     public List<TimelineEvent> postBattleEvents;
 
+    public Animator flag;
+
+    protected override void ResetToStart()
+    {
+        flag.Play("flag_wave");
+    }
+
+    protected override void ResetToEnd()
+    {
+        flag.Play("flag_wave_changed");
+    }
+
     protected override IEnumerator EventSequence()
     {
+        PlayerController.Instance.enabled = false;
         yield return new WaitForSeconds(1f);
+
+        flag.SetTrigger("change");
+        yield return new WaitForSeconds(2f);
+
         if (!TutorialProgress.victory)
         {
             yield return TimelineBar.Instance.ExpandEntireTimeline();
