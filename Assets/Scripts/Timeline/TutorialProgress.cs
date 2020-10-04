@@ -23,7 +23,7 @@ public class TutorialProgress : MonoBehaviour
         }
     }
 
-    public static bool SetMechanicLearned(Mechanic mechanic)
+    public static bool MechanicIsLearned(Mechanic mechanic)
     {
         return learnedMechanics.Contains(mechanic);
     }

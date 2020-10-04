@@ -32,6 +32,9 @@ public class FallingEnemyEvent : TimelineEvent
     [SerializeField]
     private float durationUntilImpact;
 
+    [SerializeField]
+    private Transform controlsHint;
+
     GameObject screamSound;
 
     protected override void ResetToStart()
@@ -66,6 +69,13 @@ public class FallingEnemyEvent : TimelineEvent
 
     protected override IEnumerator EventSequence()
     {
+        if (!TutorialProgress.MechanicIsLearned(TutorialProgress.Mechanic.Throwing) && controlsHint != null)
+        {
+            Tween.Stop(controlsHint.GetInstanceID());
+            controlsHint.transform.localPosition = new Vector3(0f, -6.31f, 0f);
+            Tween.Position(controlsHint.transform, controlsHint.transform.position + Vector3.up * 2f, 0.25f, 0f, Tween.EaseInOut);
+        }
+
         screamSound = AudioController.Instance.PlaySound2D("enemy_scream").gameObject;
         yield return new WaitForSeconds(0.5f);
         fallingEnemy.gameObject.SetActive(true);
@@ -81,6 +91,12 @@ public class FallingEnemyEvent : TimelineEvent
 
         if (PlayerController.Instance.Throwing)
         {
+            if (controlsHint != null)
+            {
+                Tween.Position(controlsHint.transform, controlsHint.transform.position + Vector3.up * -3f, 0.25f, 0f, Tween.EaseInOut);
+            }
+            TutorialProgress.LearnMechanic(TutorialProgress.Mechanic.Throwing);
+
             yield return new WaitForSeconds((durationUntilImpact * durationUntilImpact) - timer);
             Tween.Stop(fallingEnemy.GetInstanceID());
             fallingEnemyAnim.SetTrigger("die");
@@ -101,7 +117,11 @@ public class FallingEnemyEvent : TimelineEvent
             PlayerController.Instance.Anim.SetTrigger("knife");
             PlayerController.Instance.Die();
             yield return new WaitForSeconds(0.3f);
-            yield break;
+
+            if (controlsHint != null)
+            {
+                Tween.Position(controlsHint.transform, controlsHint.transform.position + Vector3.up * -3f, 0.25f, 0f, Tween.EaseInOut);
+            }
         }
     }
 }

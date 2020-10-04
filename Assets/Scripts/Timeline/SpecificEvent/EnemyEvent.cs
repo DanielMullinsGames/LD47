@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pixelplacement;
 
 public class EnemyEvent : TimelineEvent
 {
@@ -19,6 +20,9 @@ public class EnemyEvent : TimelineEvent
     [SerializeField]
     private string playerDeathAnimation = "knife";
 
+    [SerializeField]
+    private Transform controlsHint;
+
     protected override void ResetToStart()
     {
         enemy.transform.position = new Vector2(startMarker.position.x, enemy.transform.position.y);
@@ -33,6 +37,13 @@ public class EnemyEvent : TimelineEvent
 
     protected override IEnumerator EventSequence()
     {
+        if (!TutorialProgress.MechanicIsLearned(TutorialProgress.Mechanic.Attacking) && controlsHint != null)
+        {
+            Tween.Stop(controlsHint.GetInstanceID());
+            controlsHint.transform.localPosition = new Vector3(0f, -6.31f, 0f);
+            Tween.Position(controlsHint.transform, controlsHint.transform.position + Vector3.up * 2f, 0.25f, 0f, Tween.EaseInOut);
+        }
+
         enemy.MoveToTarget(endMarker.position.x);
         yield return new WaitUntil(() => enemy.Dead || enemy.ReachedTarget);
 
@@ -45,6 +56,11 @@ public class EnemyEvent : TimelineEvent
             {
                 strikeTimer += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
+            }
+
+            if (controlsHint != null)
+            {
+                Tween.Position(controlsHint.transform, controlsHint.transform.position + Vector3.up * -3f, 0.25f, 0f, Tween.EaseInOut);
             }
 
             if (!enemy.Dead)
@@ -62,6 +78,7 @@ public class EnemyEvent : TimelineEvent
             }
 
             yield return new WaitForSeconds(0.25f);
+            TutorialProgress.LearnMechanic(TutorialProgress.Mechanic.Attacking);
         }
     }
 }

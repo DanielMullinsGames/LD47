@@ -10,6 +10,9 @@ public class IntroSequence : MonoBehaviour
     [SerializeField]
     private Transform cam;
 
+    [SerializeField]
+    private Transform controlsHint;
+
     private void Start()
     {
 #if !UNITY_EDITOR
@@ -23,6 +26,7 @@ public class IntroSequence : MonoBehaviour
 
     public IEnumerator Intro()
     {
+        PlayerController.Instance.enabled = false;
         TimelineBar.Instance.transform.position = new Vector3(0f, 3f, 10f);
         cam.transform.position = new Vector3(0f, 15f, cam.transform.position.z);
         GetComponent<Animator>().enabled = true;
@@ -31,6 +35,10 @@ public class IntroSequence : MonoBehaviour
         Tween.Position(cam, new Vector3(0f, 0f, cam.transform.position.z), 9f, 0f, Tween.EaseInOut);
         yield return new WaitForSeconds(9f);
         Tween.LocalPosition(TimelineBar.Instance.transform, new Vector3(0f, 0f, 10f), 0.5f, 0f, Tween.EaseInOut);
+        yield return new WaitForSeconds(1f);
+        Tween.Position(controlsHint.transform, controlsHint.transform.position + Vector3.up * 2f, 1f, 0f, Tween.EaseInOut);
+        yield return new WaitForSeconds(1f);
+        PlayerController.Instance.enabled = true;
     }
 
     public IEnumerator FadeInVolume(float duration)

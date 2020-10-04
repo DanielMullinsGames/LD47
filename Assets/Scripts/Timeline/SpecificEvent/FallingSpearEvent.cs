@@ -14,6 +14,9 @@ public class FallingSpearEvent : TimelineEvent
     [SerializeField]
     private Transform landMarker;
 
+    [SerializeField]
+    private Transform controlsHint;
+
     protected override void ResetToStart()
     {
         fallingSpear.gameObject.SetActive(false);
@@ -30,10 +33,12 @@ public class FallingSpearEvent : TimelineEvent
 
     protected override IEnumerator EventSequence()
     {
+        bool learnedDucking = TutorialProgress.MechanicIsLearned(TutorialProgress.Mechanic.Ducking);
+
         fallingSpear.gameObject.SetActive(true);
 
-        Tween.Position(fallingSpear, landMarker.position, 0.75f, 0f, Tween.EaseIn);
-        yield return new WaitForSeconds(0.5f);
+        Tween.Position(fallingSpear, landMarker.position, learnedDucking ? 1f : 0.75f, 0f, Tween.EaseIn);
+        yield return new WaitForSeconds(learnedDucking ? 0.65f : 0.5f);
         
         if (!PlayerController.Instance.Ducking)
         {
@@ -47,7 +52,13 @@ public class FallingSpearEvent : TimelineEvent
         }
 
         fallingSpear.GetComponent<SpriteRenderer>().sortingOrder = 5;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(learnedDucking ? 0.35f : 0.25f);
+
+        if (!learnedDucking)
+        {
+            Tween.Position(controlsHint.transform, controlsHint.transform.position + Vector3.down * 2f, 1f, 0f, Tween.EaseInOut);
+            TutorialProgress.LearnMechanic(TutorialProgress.Mechanic.Ducking);
+        }
 
         //embed in ground animation
     }
