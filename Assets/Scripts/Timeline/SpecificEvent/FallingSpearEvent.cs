@@ -39,10 +39,16 @@ public class FallingSpearEvent : TimelineEvent
     {
         bool learnedDucking = TutorialProgress.MechanicIsLearned(TutorialProgress.Mechanic.Ducking);
 
+        if (learnedDucking)
+        {
+            AudioController.Instance.PlaySound2D("dodge");
+            yield return new WaitForSeconds(0.25f);
+        }
+
         fallingSpear.gameObject.SetActive(true);
 
-        Tween.Position(fallingSpear, landMarker.position, learnedDucking ? 1f : 0.75f, 0f, Tween.EaseIn);
-        yield return new WaitForSeconds(learnedDucking ? 0.65f : 0.5f);
+        Tween.Position(fallingSpear, landMarker.position, learnedDucking ? 1.1f : 0.75f, 0f, Tween.EaseIn);
+        yield return new WaitForSeconds(learnedDucking ? 0.7f : 0.5f);
         
         if (!PlayerController.Instance.Ducking)
         {
@@ -56,7 +62,7 @@ public class FallingSpearEvent : TimelineEvent
         }
 
         fallingSpear.GetComponent<SpriteRenderer>().sortingOrder = 5;
-        yield return new WaitForSeconds(learnedDucking ? 0.35f : 0.25f);
+        yield return new WaitForSeconds(learnedDucking ? 0.5f : 0.25f);
 
         if (!learnedDucking)
         {
