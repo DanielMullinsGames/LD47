@@ -1,7 +1,25 @@
 fileFormatVersion: 2
 guid: f6649d9ee8668cf4296ec47b8843cde9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3511053478689269882
+    second: archer_enemy_sheet_0
+  - first:
+      213: 6923245392442066785
+    second: archer_enemy_sheet_1
+  - first:
+      213: -470386776226809904
+    second: archer_enemy_sheet_2
+  - first:
+      213: 4160363020722707108
+    second: archer_enemy_sheet_7
+  - first:
+      213: -993414935246164299
+    second: archer_enemy_sheet_3
+  - first:
+      213: -2405409398014871573
+    second: archer_enemy_sheet_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,12 +58,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 108
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,9 +88,147 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: archer_enemy_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 190
+        width: 180
+        height: 322
+      alignment: 9
+      pivot: {x: 0.5126085, y: 0.09120752}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2a9f8bc871b7e84f97784b258b1c3ab
+      internalID: 3511053478689269882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_enemy_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 292
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e817406c78e5c274784b49e4ca5d7cd9
+      internalID: 6923245392442066785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_enemy_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 284
+        width: 63
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15c0fd0a38d483b4ea3c746fe48e00c3
+      internalID: -470386776226809904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_enemy_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 25
+        width: 195
+        height: 205
+      alignment: 9
+      pivot: {x: 0.3486998, y: 0.6513004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ecd484ad0fe774585227d4f0626492
+      internalID: 4160363020722707108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_enemy_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 92
+        width: 86
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3fcc98fe39c22e4ea26da9e0066c817
+      internalID: -993414935246164299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_enemy_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 92
+        width: 86
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c925c5e1dec9b454db992b23b132635a
+      internalID: -2405409398014871573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

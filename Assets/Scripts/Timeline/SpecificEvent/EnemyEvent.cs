@@ -16,6 +16,9 @@ public class EnemyEvent : TimelineEvent
     [SerializeField]
     private float telegraphTime = 0.75f;
 
+    [SerializeField]
+    private string playerDeathAnimation = "knife";
+
     protected override void ResetToStart()
     {
         enemy.transform.position = new Vector2(startMarker.position.x, enemy.transform.position.y);
@@ -51,7 +54,7 @@ public class EnemyEvent : TimelineEvent
                 if (!enemy.Dead)
                 {
                     Survived = false;
-                    PlayerController.Instance.Anim.SetTrigger("knife");
+                    PlayerController.Instance.Anim.SetTrigger(playerDeathAnimation);
                     PlayerController.Instance.Die();
                     yield return new WaitForSeconds(0.3f);
                     yield break;

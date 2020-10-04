@@ -19,6 +19,7 @@ public class PlayerController : Singleton<PlayerController>
         None,
         Spear,
         Knife,
+        Arrow,
     }
 
     public SimpleEnemy CurrentEnemyTarget { get; set; }
