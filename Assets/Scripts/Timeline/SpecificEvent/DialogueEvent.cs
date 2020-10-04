@@ -24,6 +24,15 @@ public class DialogueEvent : TimelineEvent
     [SerializeField]
     private GameObject wifeMedallion;
 
+    [SerializeField]
+    private Transform fallingSpear;
+
+    [SerializeField]
+    private Transform startMarker;
+
+    [SerializeField]
+    private Transform landMarker;
+
     private bool returned;
 
     private void Awake()
@@ -97,6 +106,16 @@ public class DialogueEvent : TimelineEvent
         wifeMedallion.SetActive(true);
         AudioController.Instance.PlaySound2D("misc_crunch_1");
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+
+        Tween.Position(fallingSpear, landMarker.position, 0.75f, 0f, Tween.EaseIn);
+        yield return new WaitForSeconds(0.5f);
+
+        PlayerController.Instance.Anim.SetTrigger("impale");
+        PlayerController.Instance.Die();
+        yield return new WaitForEndOfFrame();
+        fallingSpear.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.4f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("end");
     }
 }
