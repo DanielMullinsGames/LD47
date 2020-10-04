@@ -163,9 +163,9 @@ public class SequentialText : MonoBehaviour
 
     private void PlaySound()
     {
-        AudioController.Instance.PlaySound2D(voiceSoundId, volume: 0.3f, pitch: new AudioParams.Pitch(voicePitch), 
+        AudioController.Instance.PlaySound2D(voiceSoundId, volume: 1f, pitch: new AudioParams.Pitch(AudioParams.Pitch.Variation.VerySmall), 
             randomization: new AudioParams.Randomization(), 
-            repetition: new AudioParams.Repetition(0.05f, "dialogue"));
+            repetition: new AudioParams.Repetition(0.1f, "dialogue"));
     }
 
     public static string ColorString(string str, Color c)
