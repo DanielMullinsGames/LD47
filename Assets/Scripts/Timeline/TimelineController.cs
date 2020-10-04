@@ -71,7 +71,6 @@ public class TimelineController : Singleton<TimelineController>
             float moveTime = CameraController.Instance.MoveToPoint(CurrentEvent.transform.position.x, immediate: currentPositionIndex == RangeStartIndex);
             yield return new WaitForSeconds(moveTime);
 
-            yield return new WaitForSeconds(0.1f);
             yield return CurrentEvent.PlayEvent();
 
             survived = CurrentEvent.Survived;

@@ -1,0 +1,48 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Pixelplacement;
+
+public class FlyingArrowEvent : TimelineEvent
+{
+    [SerializeField]
+    private Transform arrow;
+
+    [SerializeField]
+    private Transform startMarker;
+
+    [SerializeField]
+    private Transform endMarker;
+
+    protected override void ResetToStart()
+    {
+        arrow.gameObject.SetActive(false);
+        arrow.transform.position = startMarker.position;
+    }
+
+    protected override void ResetToEnd()
+    {
+        arrow.gameObject.SetActive(false);
+    }
+
+    protected override IEnumerator EventSequence()
+    {
+        arrow.gameObject.SetActive(true);
+
+        Tween.Position(arrow, endMarker.position, 1.5f, 0f, Tween.EaseIn);
+        
+        yield return new WaitForSeconds(0.8f);
+        if (!PlayerController.Instance.Ducking)
+        {
+            Survived = false;
+            PlayerController.Instance.Anim.SetTrigger("arrow");
+            PlayerController.Instance.Die();
+            yield return new WaitForEndOfFrame();
+            arrow.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+            yield break;
+        }
+
+        yield return new WaitForSeconds(0.25f);
+    }
+}
