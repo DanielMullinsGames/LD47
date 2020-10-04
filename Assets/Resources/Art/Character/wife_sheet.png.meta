@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 4065483bfa21e114b9a6e47b64db2b0f
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7091908187016841532
+    second: wife_sheet_0
+  - first:
+      213: 6609841491606163077
+    second: wife_sheet_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 108
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,9 +76,63 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: wife_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 284
+        width: 159
+        height: 135
+      alignment: 9
+      pivot: {x: 0.5039249, y: 0.116313115}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c036b5100889b284ba4b41524a1a4168
+      internalID: -7091908187016841532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wife_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 172
+        height: 276
+      alignment: 9
+      pivot: {x: 0.5399114, y: 0.07717063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee18f8eeb2038fe4b961e172be972199
+      internalID: 6609841491606163077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
