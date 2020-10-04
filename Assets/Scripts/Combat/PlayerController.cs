@@ -112,7 +112,10 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (CurrentEnemyTarget != null)
             {
-                GainWeapon(Weapon.None);
+                if (!CurrentEnemyTarget.playerKeepsWeapon)
+                {
+                    GainWeapon(Weapon.None);
+                }
                 CurrentEnemyTarget.Die();
             }
         }

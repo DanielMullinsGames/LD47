@@ -3328,7 +3328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524476207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.62, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 328876469}
@@ -5979,6 +5979,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7399158735321643488, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e, type: 3}
 --- !u!4 &978049572 stripped
@@ -7109,7 +7114,7 @@ PrefabInstance:
     - target: {fileID: 3587624031255231147, guid: 3b45ccfc98308ad4991ec35d21238b4e,
         type: 3}
       propertyPath: startWeapon
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3587624031255231147, guid: 3b45ccfc98308ad4991ec35d21238b4e,
         type: 3}
@@ -7218,6 +7223,100 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1116774906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1116774907}
+  - component: {fileID: 1116774908}
+  - component: {fileID: 1116774909}
+  - component: {fileID: 1116774910}
+  m_Layer: 0
+  m_Name: Pickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1116774907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116774906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.21, y: -2.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 853807251}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1116774908
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116774906}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4}
+  m_EdgeRadius: 0
+--- !u!50 &1116774909
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116774906}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1116774910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116774906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bef6342ad7c6fe478005ade0ea08043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: 1
+  weaponSpriteOnBody: {fileID: 1608577589}
 --- !u!1001 &1140629089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9802,9 +9901,9 @@ MonoBehaviour:
   - {fileID: 1197722641}
   - {fileID: 4003560173302932684}
   - {fileID: 1151562615}
-  - {fileID: 1481168347}
-  debugStartRangeIndex: 0
-  debugStartMarker: 14
+  - {fileID: 4032502081337511782}
+  debugStartRangeIndex: 7
+  debugStartMarker: 0
 --- !u!114 &1463858606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10456,6 +10555,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &1608577589 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4032502081272491953, guid: 60e2506bf543f3b4f94c64f2d07d5607,
+    type: 3}
+  m_PrefabInstance: {fileID: 4032502082336269336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622977959
 GameObject:
   m_ObjectHideFlags: 0
@@ -17318,6 +17423,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1463858604}
     m_Modifications:
+    - target: {fileID: 2178831712064688224, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: playerKeepsWeapon
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4003560173121993536, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17417,7 +17527,7 @@ PrefabInstance:
     - target: {fileID: 4003560174814668440, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
         type: 3}
       propertyPath: startWeapon
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4003560174814668442, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
         type: 3}
@@ -17510,6 +17620,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4908913715358801364, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082415691567090752, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399158735321643488, guid: cb61a5e2d4e03ad448fbc99b58ef0f3e,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17761,7 +17881,7 @@ PrefabInstance:
     - target: {fileID: 4032502082631709836, guid: 60e2506bf543f3b4f94c64f2d07d5607,
         type: 3}
       propertyPath: startWeapon
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4032502082631709836, guid: 60e2506bf543f3b4f94c64f2d07d5607,
         type: 3}

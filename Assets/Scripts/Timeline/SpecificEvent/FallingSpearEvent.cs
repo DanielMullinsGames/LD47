@@ -9,6 +9,9 @@ public class FallingSpearEvent : TimelineEvent
     private Transform fallingSpear;
 
     [SerializeField]
+    private SpriteRenderer fallingSpearSR;
+
+    [SerializeField]
     private Transform startMarker;
 
     [SerializeField]
@@ -19,6 +22,7 @@ public class FallingSpearEvent : TimelineEvent
 
     protected override void ResetToStart()
     {
+        fallingSpearSR.enabled = true;
         fallingSpear.gameObject.SetActive(false);
         fallingSpear.transform.position = startMarker.position;
         fallingSpear.GetComponent<SpriteRenderer>().sortingOrder = -1;

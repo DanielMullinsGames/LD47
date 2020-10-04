@@ -7,6 +7,8 @@ public class SimpleEnemy : MonoBehaviour
 {
     public bool ReachedTarget { get; private set; }
 
+    public bool playerKeepsWeapon;
+
     [SerializeField]
     private Animator anim;
 
