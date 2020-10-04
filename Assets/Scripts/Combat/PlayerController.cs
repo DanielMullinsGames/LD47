@@ -38,6 +38,9 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField]
     private GameObject medallion;
 
+    public Material defaultWeaponMat;
+    public Material flashWeaponMat;
+
     private bool releasedAttack;
     private bool releasedThrow;
 
@@ -95,6 +98,12 @@ public class PlayerController : Singleton<PlayerController>
         if (weapon != Weapon.None)
         {
             CurrentWeapon.SetActive(true);
+            if (!immediate)
+            {
+                AudioController.Instance.PlaySound2D("misc_crunch_1");
+                CurrentWeapon.GetComponent<SpriteRenderer>().material = flashWeaponMat;
+                CustomCoroutine.WaitThenExecute(0.1f, () => CurrentWeapon.GetComponent<SpriteRenderer>().material = defaultWeaponMat);
+            }
         }
     }
 

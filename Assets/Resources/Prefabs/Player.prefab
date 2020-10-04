@@ -1018,6 +1018,8 @@ MonoBehaviour:
   - {fileID: 7975165386730737493}
   - {fileID: 8836597446516718582}
   medallion: {fileID: 2259942095804857686}
+  defaultWeaponMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  flashWeaponMat: {fileID: 2100000, guid: 302c9d718174a68478436ad93f3c32ef, type: 2}
 --- !u!61 &1979285758134752643
 BoxCollider2D:
   m_ObjectHideFlags: 0
