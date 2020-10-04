@@ -13,6 +13,8 @@ public class TutorialProgress : MonoBehaviour
         PickingUp,
     }
 
+    public static bool victory;
+
     private static List<Mechanic> learnedMechanics = new List<Mechanic>();
 
     public static void LearnMechanic(Mechanic mechanic)

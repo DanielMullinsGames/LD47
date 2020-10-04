@@ -26,11 +26,20 @@ public class TimelineBar : Singleton<TimelineBar>
     [SerializeField]
     private AnimationCurve tweenCurve;
 
+    [SerializeField]
+    private Animator frameAnim;
+
     private bool tweening = false;
 
     private void Start()
     {
         ShowRange(TimelineController.Instance.RangeStartIndex, TimelineController.Instance.RangeEndIndex);
+    }
+
+    public IEnumerator ExpandEntireTimeline()
+    {
+        frameAnim.Play("expand", 0, 0f);
+        yield return new WaitForSeconds(3f);
     }
 
     public IEnumerator ShowExpandRange(int rangeStartIndex, int rangeEndIndex)

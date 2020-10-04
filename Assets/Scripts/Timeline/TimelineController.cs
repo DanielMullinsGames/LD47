@@ -33,14 +33,13 @@ public class TimelineController : Singleton<TimelineController>
     public int NumEventsInTimeline => events.Count;
     public int NumEventsInActiveRange => (((events.Count / 2) - RangeStartIndex) * 2) + 1;
     public int ActiveRangeEventProgress => currentPositionIndex - RangeStartIndex;
-    public int RangeStartIndex { get; private set; }
+    public int RangeStartIndex { get; set; }
     public int RangeEndIndex => RangeCenterIndex + (RangeCenterIndex - RangeStartIndex + 1);
     private int RangeCenterIndex => Mathf.CeilToInt(events.Count / 2f) - 1;
 
-    [SerializeField]
-    private List<TimelineEvent> events = new List<TimelineEvent>();
+    public List<TimelineEvent> events = new List<TimelineEvent>();
 
-    private int currentPositionIndex;
+    public int currentPositionIndex { get; set; }
 
 #if UNITY_EDITOR
     [Header("DEBUG")]
@@ -80,7 +79,7 @@ public class TimelineController : Singleton<TimelineController>
         currentPositionIndex = RangeStartIndex;
 
 #if UNITY_EDITOR
-        if (debugStartMarker > 0)
+        if (debugStartMarker > 0 && !TutorialProgress.victory)
         {
             currentPositionIndex = debugStartMarker;
             SkipToStartOfEvent(debugStartMarker);
@@ -119,7 +118,14 @@ public class TimelineController : Singleton<TimelineController>
         AnimationPauser.Instance.SetPaused(true);
         yield return new WaitForSeconds(0.5f);
 
-        RangeStartIndex = Mathf.Max(0, RangeStartIndex - 1);
+        if (TutorialProgress.victory)
+        {
+            RangeStartIndex = 0;
+        }
+        else
+        {
+            RangeStartIndex = Mathf.Max(0, RangeStartIndex - 1);
+        }
         yield return TimelineBar.Instance.ShowExpandRange(RangeStartIndex, RangeEndIndex);
         yield return new WaitForSeconds(0.25f);
 
